@@ -1,6 +1,6 @@
 name: fluent_assertions
-description: Fluent Assertions library written for Dart.
-version: 1.0.0
+description: Fluent Assertions library written in Dart.
+version: 0.1.0
 homepage: https://github.com/klisiewicz/fluent-assertions
 
 environment:

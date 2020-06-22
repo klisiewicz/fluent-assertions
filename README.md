@@ -4,15 +4,34 @@ It uses Dart's Extension Functions to provide a fluent wrapper around test asser
 
 ## Usage
 
-A simple usage example:
+#### Basic Assertions
+
+##### Equality
 
 ```dart
-import 'package:fluent_assertions/fluent_assertions.dart';
-
-main() {
-  var awesome = new Awesome();
-}
+'Hello'.shouldBeEqualTo('Hello');
 ```
+```dart
+'Hello'.shouldNotBeEqualTo('Word');
+```
+
+##### Nullability
+
+```dart
+const hello = 'Hello';
+hello.shouldNotBeNull();
+```
+
+```dart
+const hello = null;
+hello.shouldBeNull();
+```
+
+#### Numerical Assertions
+
+#### CharSequence Assertions
+
+#### Collection Assertions
 
 ## Features and bugs
 
