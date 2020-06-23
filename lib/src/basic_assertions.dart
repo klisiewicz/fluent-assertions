@@ -12,6 +12,14 @@ extension BasicAssertions<T> on T {
 
   // Asserts that the value is non-null.
   void shouldNotBeNull() => expect(this, isNotNull);
+
+  // Asserts that the value is of type [E].
+  /// [E] - Expected type.
+  void shouldBeInstanceOf<E>() => expect(this, isA<E>());
+
+  // Asserts that the value is not of type [E].
+  /// [E] - Expected type.
+  void shouldNotBeInstanceOf<E>() => expect(this, isNot(isA<E>()));
 }
 
 extension BoolAssertions on bool {
@@ -24,6 +32,6 @@ extension BoolAssertions on bool {
   // Asserts that the value is false.
   void shouldBeFalse() => expect(this, isFalse);
 
-  // Asserts that the value is true.
+  // Asserts that the value is false.
   void shouldNotBeTrue() => expect(this, isNot(isTrue));
 }

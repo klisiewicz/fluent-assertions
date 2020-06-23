@@ -17,6 +17,13 @@ This assertions are available for all objects:
 'Hello'.shouldNotBeEqualTo('Word');
 ```
 
+#### Subtypes
+```dart
+const Number numberOfGirlsIAttract = 0;
+numberOfGirlsIAttract.shouldBeInstanceOf<int>();
+numberOfGirlsIAttract.shouldNotBeInstanceOf<int>();
+```
+
 ##### Nullability
 
 ```dart

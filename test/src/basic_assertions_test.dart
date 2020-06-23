@@ -182,4 +182,36 @@ void main() {
       );
     });
   });
+
+  group('sub types', () {
+    const num someNumber = 10.0;
+
+    test('should return normally when proper subtype', () {
+      expect(
+        () => someNumber.shouldBeInstanceOf<double>(),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when not proper subtype', () {
+      expect(
+        () => someNumber.shouldBeInstanceOf<int>(),
+        failsTest,
+      );
+    });
+
+    test('should fail when proper subtype', () {
+      expect(
+        () => someNumber.shouldNotBeInstanceOf<double>(),
+        failsTest,
+      );
+    });
+
+    test('should return normally when not proper subtype', () {
+      expect(
+        () => someNumber.shouldNotBeInstanceOf<int>(),
+        returnsNormally,
+      );
+    });
+  });
 }
