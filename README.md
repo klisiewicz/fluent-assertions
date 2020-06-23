@@ -29,7 +29,7 @@ me.shouldNotBe(alsoMe);
 ##### Subtypes
 
 ```dart
-const Number numberOfGirlsIAttract = 0;
+const num numberOfGirlsIAttract = 0;
 numberOfGirlsIAttract.shouldBeInstanceOf<int>();
 numberOfGirlsIAttract.shouldNotBeInstanceOf<double>();
 ```
