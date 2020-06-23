@@ -6,7 +6,7 @@ It uses Dart's [Extension Functions](https://dart.dev/guides/language/extension-
 
 #### Basic Assertions
 
-This assertions are available for all objects:
+These assertions are available for all objects.
 
 ##### Equality
 
@@ -17,11 +17,21 @@ This assertions are available for all objects:
 'Hello'.shouldNotBeEqualTo('Word');
 ```
 
-#### Subtypes
+##### Reference equality
+
+```dart
+final me = Person(name: 'Karol');
+final alsoMe = Person(name: 'Karol');
+me.shouldBe(me);
+me.shouldNotBe(alsoMe);
+```
+
+##### Subtypes
+
 ```dart
 const Number numberOfGirlsIAttract = 0;
 numberOfGirlsIAttract.shouldBeInstanceOf<int>();
-numberOfGirlsIAttract.shouldNotBeInstanceOf<int>();
+numberOfGirlsIAttract.shouldNotBeInstanceOf<double>();
 ```
 
 ##### Nullability
@@ -36,7 +46,8 @@ const hello = null;
 hello.shouldBeNull();
 ```
 
-#### Booleans
+##### Booleans
+
 ```dart
 const hasChildren = true;
 hasChildren.shouldBeTrue();
@@ -56,9 +67,7 @@ hasChildren.shouldNotBeTrue();
 
 ## Features and bugs
 
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
+Please file feature requests and bugs at the [issue tracker](https://github.com/klisiewicz/fluent-assertions/issues).
 
 ## Author
 - [Karol Lisiewicz](https://github.com/klisiewicz)

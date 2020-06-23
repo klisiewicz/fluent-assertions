@@ -67,9 +67,9 @@ void main() {
     });
 
     group('objects', () {
-      const me = Person(name: 'Karol', age: 35);
-      const alsoMe = Person(name: 'Karol', age: 35);
-      const someoneElse = Person(name: 'Janusz', age: 69);
+      final me = Person(name: 'Karol');
+      final alsoMe = Person(name: 'Karol');
+      final someoneElse = Person(name: 'Janusz');
 
       test('should return normally when equal', () {
         expect(
@@ -101,9 +101,44 @@ void main() {
     });
   });
 
+  group('reference equality', () {
+    group('objects', () {
+      final me = Person(name: 'Karol');
+      final alsoMe = Person(name: 'Karol');
+
+      test('should return normally when same instance', () {
+        expect(
+          () => me.shouldBe(me),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when same different instances', () {
+        expect(
+          () => me.shouldBe(alsoMe),
+          failsTest,
+        );
+      });
+
+      test('should fail when same instance', () {
+        expect(
+          () => me.shouldNotBe(me),
+          failsTest,
+        );
+      });
+
+      test('should return normally when different instances', () {
+        expect(
+          () => me.shouldNotBe(alsoMe),
+          returnsNormally,
+        );
+      });
+    });
+  });
+
   group('nullability', () {
     const Person nullPerson = null;
-    const nonNullPerson = Person();
+    final me = Person(name: 'Karol');
 
     test('should return normally when null', () {
       expect(
@@ -114,14 +149,14 @@ void main() {
 
     test('should fail when not null', () {
       expect(
-        () => nonNullPerson.shouldBeNull(),
+        () => me.shouldBeNull(),
         failsTest,
       );
     });
 
     test('should return normally when not null', () {
       expect(
-        () => nonNullPerson.shouldNotBeNull(),
+        () => me.shouldNotBeNull(),
         returnsNormally,
       );
     });

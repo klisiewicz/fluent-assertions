@@ -7,6 +7,12 @@ extension BasicAssertions<T> on T {
   /// Asserts that the value is structurally different from [expected].
   void shouldNotBeEqualTo(T expected) => expect(this, isNot(equals(expected)));
 
+  /// Asserts that the value is the same instance as [expected], using [identical].
+  void shouldBe(T expected) => expect(this, same(expected));
+
+  /// Asserts that the value is not the same instance as [expected], using [identical].
+  void shouldNotBe(T expected) => expect(this, isNot(same(expected)));
+
   // Asserts that the value is null.
   void shouldBeNull() => expect(this, isNull);
 

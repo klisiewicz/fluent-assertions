@@ -1,10 +1,8 @@
 class Person {
   final String name;
-  final int age;
 
-  const Person({
+  Person({
     this.name,
-    this.age,
   });
 
   @override
@@ -12,12 +10,11 @@ class Person {
       identical(this, other) ||
       other is Person &&
           runtimeType == other.runtimeType &&
-          name == other.name &&
-          age == other.age;
+          name == other.name;
 
   @override
-  int get hashCode => name.hashCode ^ age.hashCode;
+  int get hashCode => name.hashCode;
 
   @override
-  String toString() => '$name, age: $age';
+  String toString() => name;
 }
