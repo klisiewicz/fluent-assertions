@@ -133,4 +133,53 @@ void main() {
       );
     });
   });
+
+  group('booleans', () {
+    const isTrue = true;
+    const isFalse = false;
+
+    test('should return normally when true', () {
+      expect(
+        () => isTrue.shouldBeTrue(),
+        returnsNormally,
+      );
+      expect(
+        () => isTrue.shouldNotBeFalse(),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when false', () {
+      expect(
+        () => isTrue.shouldBeFalse(),
+        failsTest,
+      );
+      expect(
+        () => isTrue.shouldNotBeTrue(),
+        failsTest,
+      );
+    });
+
+    test('should return normally when false', () {
+      expect(
+        () => isFalse.shouldBeFalse(),
+        returnsNormally,
+      );
+      expect(
+        () => isFalse.shouldNotBeTrue(),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when true', () {
+      expect(
+        () => isFalse.shouldBeTrue(),
+        failsTest,
+      );
+      expect(
+        () => isFalse.shouldNotBeFalse(),
+        failsTest,
+      );
+    });
+  });
 }

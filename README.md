@@ -1,10 +1,12 @@
-The "Fluent Assertions" library written specifically for Dart.
+The [Fluent Assertions](https://fluentassertions.com/) library written in Dart.
 
-It uses Dart's Extension Functions to provide a fluent wrapper around test assertions.
+It uses Dart's [Extension Functions](https://dart.dev/guides/language/extension-methods) to provide a fluent wrapper around test assertions.
 
 ## Usage
 
 #### Basic Assertions
+
+This assertions are available for all objects:
 
 ##### Equality
 
@@ -25,6 +27,18 @@ hello.shouldNotBeNull();
 ```dart
 const hello = null;
 hello.shouldBeNull();
+```
+
+#### Booleans
+```dart
+const hasChildren = true;
+hasChildren.shouldBeTrue();
+hasChildren.shouldNotBeFalse();
+```
+```dart
+const hasChildren = false;
+hasChildren.shouldBeFalse();
+hasChildren.shouldNotBeTrue();
 ```
 
 #### Numerical Assertions

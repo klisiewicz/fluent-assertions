@@ -1,3 +1,3 @@
 import 'package:test/test.dart';
 
-final Matcher failsTest = throwsA(TypeMatcher<TestFailure>());
+final Matcher failsTest = throwsA(const TypeMatcher<TestFailure>());
