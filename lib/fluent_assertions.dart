@@ -3,6 +3,6 @@
 /// More dartdocs go here.
 library fluent_assertions;
 
-export 'src/fluent_assertions_base.dart';
+export 'src/basic_assertions.dart';
 
 // TODO: Export any libraries intended for clients of this package.

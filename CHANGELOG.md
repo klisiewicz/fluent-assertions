@@ -1,3 +1,8 @@
-## 1.0.0
+## 0.1.0
 
-- Initial version, created by Stagehand
+Added assertions for:
+* Equality
+* Reference Equality
+* Nullability
+* Boolean
+* Subtype
