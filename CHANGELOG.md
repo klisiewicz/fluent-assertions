@@ -1,3 +1,8 @@
 ## 0.1.0
 
-- Basic assertions.
+Added assertions for:
+* Equality
+* Reference Equality
+* Nullability
+* Boolean
+* Subtype
