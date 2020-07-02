@@ -2,27 +2,31 @@ import 'package:test/test.dart';
 import 'package:fluent_assertions/fluent_assertions.dart';
 
 void main() {
-  const somePerson = Person(name: 'Karol', age: 30);
-  const someOtherPerson = Person(name: 'Karyna', age: 17);
+  const adult = Person(name: 'Karol', age: 30);
+  const teenager = Person(name: 'Karyna', age: 17);
 
   test('different persons should not be equal', () {
-    somePerson.shouldNotBeEqualTo(someOtherPerson);
+    adult.shouldNotBeEqualTo(teenager);
   });
 
   test('person name should not be null', () {
-    somePerson.name.shouldNotBeNull();
+    adult.name.shouldNotBeNull();
   });
 
   test('person age should be integer', () {
-    somePerson.age.shouldBeInstanceOf<int>();
+    adult.age.shouldBeInstanceOf<int>();
   });
 
   test('a person over 18 should be adult', () {
-    somePerson.isAdult.shouldBeTrue();
+    adult.isAdult.shouldBeTrue();
   });
 
-  test('a adult person should be over 18', () {
-    somePerson.age.shouldBeGreaterOrEqualTo(18);
+  test('an adult person should be over 18', () {
+    adult.age.shouldBeGreaterOrEqualTo(18);
+  });
+
+  test('a teenager can driver a car', () {
+    teenager.age.shouldBeGreaterThan(16);
   });
 }
 

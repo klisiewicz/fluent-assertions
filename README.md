@@ -62,7 +62,11 @@ hasChildren.shouldNotBeTrue();
 #### Numerical Assertions
 
 ```dart
-2.shouldBeGreaterOrEqualTo(1);
+2.shouldBeGreaterOrEqualTo(2);
+```
+
+```dart
+2.shouldBeGreaterThan(1);
 ```
 
 #### CharSequence Assertions

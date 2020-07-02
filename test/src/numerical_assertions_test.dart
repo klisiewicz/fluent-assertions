@@ -31,7 +31,50 @@ void main() {
 
     test('should fail when smaller', () {
       expect(
+            () => 1.shouldBeGreaterOrEqualTo(2),
+        failsTest,
+      );
+
+      expect(
             () => 1.99999999.shouldBeGreaterOrEqualTo(2),
+        failsTest,
+      );
+    });
+  });
+
+  group('greater', () {
+    test('should return normally when greater', () {
+      expect(
+            () => 2.shouldBeGreaterThan(1),
+        returnsNormally,
+      );
+
+      expect(
+            () => 2.000000001.shouldBeGreaterThan(2),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when equal', () {
+      expect(
+            () => 2.shouldBeGreaterThan(2),
+        failsTest,
+      );
+
+      expect(
+            () => 2.0.shouldBeGreaterThan(2),
+        failsTest,
+      );
+    });
+
+    test('should fail when smaller', () {
+      expect(
+            () => 1.shouldBeGreaterThan(2),
+        failsTest,
+      );
+
+      expect(
+            () => 1.99999999.shouldBeGreaterThan(2),
         failsTest,
       );
     });
