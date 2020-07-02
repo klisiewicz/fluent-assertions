@@ -20,6 +20,10 @@ void main() {
   test('a person over 18 should be adult', () {
     somePerson.isAdult.shouldBeTrue();
   });
+
+  test('a adult person should be over 18', () {
+    somePerson.age.shouldBeGreaterOrEqualTo(18);
+  });
 }
 
 
