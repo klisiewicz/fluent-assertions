@@ -42,6 +42,44 @@ void main() {
     });
   });
 
+  group('not greater or equal', () {
+    test('should return normally when less', () {
+      expect(
+            () => 1.shouldNotBeGreaterOrEqualTo(2),
+        returnsNormally,
+      );
+
+      expect(
+            () => 1.999999999.shouldNotBeGreaterOrEqualTo(2),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when equal', () {
+      expect(
+            () => 2.shouldNotBeGreaterOrEqualTo(2),
+        failsTest,
+      );
+
+      expect(
+            () => 2.0.shouldNotBeGreaterOrEqualTo(2),
+        failsTest,
+      );
+    });
+
+    test('should fail when greater', () {
+      expect(
+            () => 2.shouldNotBeGreaterOrEqualTo(1),
+        failsTest,
+      );
+
+      expect(
+            () => 2.00000001.shouldNotBeGreaterOrEqualTo(2),
+        failsTest,
+      );
+    });
+  });
+
   group('greater', () {
     test('should return normally when greater', () {
       expect(
@@ -75,6 +113,44 @@ void main() {
 
       expect(
         () => 1.99999999.shouldBeGreaterThan(2),
+        failsTest,
+      );
+    });
+  });
+
+  group('not greater', () {
+    test('should return normally when less', () {
+      expect(
+            () => 1.shouldNotBeGreaterThan(2),
+        returnsNormally,
+      );
+
+      expect(
+            () => 1.999999999.shouldNotBeGreaterThan(2),
+        returnsNormally,
+      );
+    });
+
+    test('should return normally when equal', () {
+      expect(
+            () => 2.shouldNotBeGreaterThan(2),
+        returnsNormally,
+      );
+
+      expect(
+            () => 2.0.shouldNotBeGreaterThan(2),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when greater', () {
+      expect(
+            () => 2.shouldNotBeGreaterThan(1),
+        failsTest,
+      );
+
+      expect(
+            () => 2.00000001.shouldNotBeGreaterThan(2),
         failsTest,
       );
     });
@@ -118,6 +194,44 @@ void main() {
     });
   });
 
+  group('not less or equal', () {
+    test('should return normally when greater', () {
+      expect(
+            () => 2.shouldNotBeLessOrEqualTo(1),
+        returnsNormally,
+      );
+
+      expect(
+            () => 2.000000001.shouldNotBeLessOrEqualTo(2),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when equal', () {
+      expect(
+            () => 2.shouldNotBeLessOrEqualTo(2),
+        failsTest,
+      );
+
+      expect(
+            () => 2.0.shouldNotBeLessOrEqualTo(2),
+        failsTest,
+      );
+    });
+
+    test('should fail when smaller', () {
+      expect(
+            () => 1.shouldNotBeLessOrEqualTo(2),
+        failsTest,
+      );
+
+      expect(
+            () => 1.99999999.shouldNotBeLessOrEqualTo(2),
+        failsTest,
+      );
+    });
+  });
+
   group('less', () {
     test('should return normally when less', () {
       expect(
@@ -151,6 +265,44 @@ void main() {
 
       expect(
         () => 2.00000001.shouldBeLessThan(2),
+        failsTest,
+      );
+    });
+  });
+
+  group('not less', () {
+    test('should return normally when greater', () {
+      expect(
+            () => 2.shouldNotBeLessThan(1),
+        returnsNormally,
+      );
+
+      expect(
+            () => 2.000000001.shouldNotBeLessThan(2),
+        returnsNormally,
+      );
+    });
+
+    test('should return normally when equal', () {
+      expect(
+            () => 2.shouldNotBeLessThan(2),
+        returnsNormally,
+      );
+
+      expect(
+            () => 2.0.shouldNotBeLessThan(2),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when smaller', () {
+      expect(
+            () => 1.shouldNotBeLessThan(2),
+        failsTest,
+      );
+
+      expect(
+            () => 1.99999999.shouldNotBeLessThan(2),
         failsTest,
       );
     });
