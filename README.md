@@ -93,7 +93,12 @@ hasChildren.shouldNotBeTrue();
 ```
 
 ```dart
-0.999.shouldBeNear(1, delta: 0.01),
+0.999.shouldBeNear(1, delta: 0.01);
+```
+
+```dart
+0.shouldNotBeInRange(lowerBound: 1, upperBound: 6);
+1.shouldBeInRange(lowerBound: 1, upperBound: 6);
 ```
 
 #### CharSequence Assertions

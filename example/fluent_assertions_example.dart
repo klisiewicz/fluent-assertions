@@ -33,6 +33,10 @@ void main() {
     teenager.age.shouldBeLessThan(18);
   });
 
+  test('a teenager should be below 18', () {
+    teenager.age.shouldBeInRange(lowerBound: 0, upperBound: 17);
+  });
+
   test('a person age should be positive', () {
     teenager.age.shouldBePositive();
   });

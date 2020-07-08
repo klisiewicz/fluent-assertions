@@ -48,4 +48,20 @@ extension NumericalAssertions on num {
   /// Asserts that the value is within [delta] of some [expected] value.
   void shouldBeNear(num expected, {num delta = 0}) =>
       expect(this, closeTo(expected, delta));
+
+  /// Asserts that the value is greater than or equal to [lowerBound]
+  /// and less than or equal to [upperBound].
+  void shouldBeInRange({
+    num lowerBound = double.negativeInfinity,
+    num upperBound = double.infinity,
+  }) =>
+      expect(this, inInclusiveRange(lowerBound, upperBound));
+
+  /// Asserts that the value is greater than [upperBound] or
+  /// less than [lowerBound].
+  void shouldNotBeInRange({
+    num lowerBound = double.negativeInfinity,
+    num upperBound = double.infinity,
+  }) =>
+      expect(this, isNot(inInclusiveRange(lowerBound, upperBound)));
 }

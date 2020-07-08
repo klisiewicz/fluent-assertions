@@ -497,8 +497,7 @@ void main() {
       );
     });
 
-    test(
-        'should return normally when the value is within lower delta bound',
+    test('should return normally when the value is within lower delta bound',
         () {
       expect(
         () => 0.6.shouldBeNear(1, delta: 0.4),
@@ -506,8 +505,7 @@ void main() {
       );
     });
 
-    test(
-        'should return normally when the value within to upper delta bound',
+    test('should return normally when the value within to upper delta bound',
         () {
       expect(
         () => 1.4.shouldBeNear(1, delta: 0.4),
@@ -527,6 +525,210 @@ void main() {
         () => 1.41.shouldBeNear(1, delta: 0.4),
         failsTest,
       );
+    });
+  });
+
+  group('in range', () {
+    group('closed', () {
+      test('should return normally when value is equal to lower bound', () {
+        expect(
+          () => 0.shouldBeInRange(lowerBound: 0, upperBound: 1),
+          returnsNormally,
+        );
+      });
+
+      test('should return normally when value is equal to upper bound', () {
+        expect(
+          () => 1.shouldBeInRange(lowerBound: 0, upperBound: 1),
+          returnsNormally,
+        );
+      });
+
+      test('should return normally when value is withing range', () {
+        expect(
+          () => 0.5.shouldBeInRange(lowerBound: 0, upperBound: 1),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when value is smaller than lower bound', () {
+        expect(
+          () => negativeNumberCloseToZero.shouldBeInRange(
+            lowerBound: 0,
+            upperBound: 1,
+          ),
+          failsTest,
+        );
+      });
+
+      test('should fail when value is greater than upper bound', () {
+        expect(
+          () => 1.0000000001.shouldBeInRange(
+            lowerBound: 0,
+            upperBound: 1,
+          ),
+          failsTest,
+        );
+      });
+    });
+
+    group('lower closed', () {
+      test('should return normally when value is equal to lower bound', () {
+        expect(
+          () => 0.shouldBeInRange(lowerBound: 0),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when value is smaller than lower bound', () {
+        expect(
+          () => negativeNumberCloseToZero.shouldBeInRange(lowerBound: 0),
+          failsTest,
+        );
+      });
+
+      test('should return normally when value is higher than the lower bound',
+          () {
+        expect(
+          () => positiveNumberCloseToZero.shouldBeInRange(lowerBound: 0),
+          returnsNormally,
+        );
+
+        expect(
+          () => double.maxFinite.shouldBeInRange(lowerBound: 0),
+          returnsNormally,
+        );
+      });
+    });
+
+    group('upper closed', () {
+      test('should return normally when value is equal to upper bound', () {
+        expect(
+          () => 0.shouldBeInRange(upperBound: 0),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when value is greater than upper bound', () {
+        expect(
+          () => positiveNumberCloseToZero.shouldBeInRange(upperBound: 0),
+          failsTest,
+        );
+      });
+
+      test('should return normally when value is lower than upper bound', () {
+        expect(
+          () => negativeNumberCloseToZero.shouldBeInRange(upperBound: 0),
+          returnsNormally,
+        );
+
+        expect(
+          () => (-double.maxFinite).shouldBeInRange(upperBound: 0),
+          returnsNormally,
+        );
+      });
+    });
+  });
+
+  group('not in range', () {
+    group('closed', () {
+      test('should fail when value is equal to lower bound', () {
+        expect(
+          () => 0.shouldNotBeInRange(lowerBound: 0, upperBound: 1),
+          failsTest,
+        );
+      });
+
+      test('should fail when value is equal to upper bound', () {
+        expect(
+          () => 1.shouldNotBeInRange(lowerBound: 0, upperBound: 1),
+          failsTest,
+        );
+      });
+
+      test('should fail when value is withing range', () {
+        expect(
+          () => 0.5.shouldNotBeInRange(lowerBound: 0, upperBound: 1),
+          failsTest,
+        );
+      });
+
+      test('should return normally when value is smaller than lower bound', () {
+        expect(
+          () => negativeNumberCloseToZero.shouldNotBeInRange(
+            lowerBound: 0,
+            upperBound: 1,
+          ),
+          returnsNormally,
+        );
+      });
+
+      test('should return normally when value is greater than upper bound', () {
+        expect(
+          () => 1.0000000001.shouldNotBeInRange(
+            lowerBound: 0,
+            upperBound: 1,
+          ),
+          returnsNormally,
+        );
+      });
+    });
+
+    group('lower closed', () {
+      test('should fail when value is equal to lower bound', () {
+        expect(
+          () => 0.shouldNotBeInRange(lowerBound: 0),
+          failsTest,
+        );
+      });
+
+      test('should return normally when value is smaller than lower bound', () {
+        expect(
+          () => negativeNumberCloseToZero.shouldNotBeInRange(lowerBound: 0),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when value is higher than the lower bound',
+          () {
+        expect(
+          () => positiveNumberCloseToZero.shouldNotBeInRange(lowerBound: 0),
+          failsTest,
+        );
+
+        expect(
+          () => double.maxFinite.shouldNotBeInRange(lowerBound: 0),
+          failsTest,
+        );
+      });
+    });
+
+    group('upper closed', () {
+      test('should fail when value is equal to upper bound', () {
+        expect(
+          () => 0.shouldNotBeInRange(upperBound: 0),
+          failsTest,
+        );
+      });
+
+      test('should return normally when value is greater than upper bound', () {
+        expect(
+          () => positiveNumberCloseToZero.shouldNotBeInRange(upperBound: 0),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when value is lower than upper bound', () {
+        expect(
+          () => negativeNumberCloseToZero.shouldNotBeInRange(upperBound: 0),
+          failsTest,
+        );
+
+        expect(
+          () => (-double.maxFinite).shouldNotBeInRange(upperBound: 0),
+          failsTest,
+        );
+      });
     });
   });
 }
