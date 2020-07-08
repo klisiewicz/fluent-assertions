@@ -85,6 +85,10 @@ hasChildren.shouldNotBeTrue();
 (-1).shouldBeNegative();
 ```
 
+```dart
+1.shouldNotBeZero();
+```
+
 #### CharSequence Assertions
 
 #### Collection Assertions

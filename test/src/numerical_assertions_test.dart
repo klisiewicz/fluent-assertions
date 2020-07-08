@@ -4,6 +4,9 @@ import 'package:test/test.dart';
 import 'matchers.dart';
 
 void main() {
+  const positiveNumberCloseToZero = 0.000000001;
+  const negativeNumberCloseToZero = -0.999999999;
+
   group('greater or equal', () {
     test('should return normally when greater', () {
       expect(
@@ -45,36 +48,36 @@ void main() {
   group('not greater or equal', () {
     test('should return normally when less', () {
       expect(
-            () => 1.shouldNotBeGreaterOrEqualTo(2),
+        () => 1.shouldNotBeGreaterOrEqualTo(2),
         returnsNormally,
       );
 
       expect(
-            () => 1.999999999.shouldNotBeGreaterOrEqualTo(2),
+        () => 1.999999999.shouldNotBeGreaterOrEqualTo(2),
         returnsNormally,
       );
     });
 
     test('should fail when equal', () {
       expect(
-            () => 2.shouldNotBeGreaterOrEqualTo(2),
+        () => 2.shouldNotBeGreaterOrEqualTo(2),
         failsTest,
       );
 
       expect(
-            () => 2.0.shouldNotBeGreaterOrEqualTo(2),
+        () => 2.0.shouldNotBeGreaterOrEqualTo(2),
         failsTest,
       );
     });
 
     test('should fail when greater', () {
       expect(
-            () => 2.shouldNotBeGreaterOrEqualTo(1),
+        () => 2.shouldNotBeGreaterOrEqualTo(1),
         failsTest,
       );
 
       expect(
-            () => 2.00000001.shouldNotBeGreaterOrEqualTo(2),
+        () => 2.00000001.shouldNotBeGreaterOrEqualTo(2),
         failsTest,
       );
     });
@@ -121,36 +124,36 @@ void main() {
   group('not greater', () {
     test('should return normally when less', () {
       expect(
-            () => 1.shouldNotBeGreaterThan(2),
+        () => 1.shouldNotBeGreaterThan(2),
         returnsNormally,
       );
 
       expect(
-            () => 1.999999999.shouldNotBeGreaterThan(2),
+        () => 1.999999999.shouldNotBeGreaterThan(2),
         returnsNormally,
       );
     });
 
     test('should return normally when equal', () {
       expect(
-            () => 2.shouldNotBeGreaterThan(2),
+        () => 2.shouldNotBeGreaterThan(2),
         returnsNormally,
       );
 
       expect(
-            () => 2.0.shouldNotBeGreaterThan(2),
+        () => 2.0.shouldNotBeGreaterThan(2),
         returnsNormally,
       );
     });
 
     test('should fail when greater', () {
       expect(
-            () => 2.shouldNotBeGreaterThan(1),
+        () => 2.shouldNotBeGreaterThan(1),
         failsTest,
       );
 
       expect(
-            () => 2.00000001.shouldNotBeGreaterThan(2),
+        () => 2.00000001.shouldNotBeGreaterThan(2),
         failsTest,
       );
     });
@@ -197,36 +200,36 @@ void main() {
   group('not less or equal', () {
     test('should return normally when greater', () {
       expect(
-            () => 2.shouldNotBeLessOrEqualTo(1),
+        () => 2.shouldNotBeLessOrEqualTo(1),
         returnsNormally,
       );
 
       expect(
-            () => 2.000000001.shouldNotBeLessOrEqualTo(2),
+        () => 2.000000001.shouldNotBeLessOrEqualTo(2),
         returnsNormally,
       );
     });
 
     test('should fail when equal', () {
       expect(
-            () => 2.shouldNotBeLessOrEqualTo(2),
+        () => 2.shouldNotBeLessOrEqualTo(2),
         failsTest,
       );
 
       expect(
-            () => 2.0.shouldNotBeLessOrEqualTo(2),
+        () => 2.0.shouldNotBeLessOrEqualTo(2),
         failsTest,
       );
     });
 
     test('should fail when smaller', () {
       expect(
-            () => 1.shouldNotBeLessOrEqualTo(2),
+        () => 1.shouldNotBeLessOrEqualTo(2),
         failsTest,
       );
 
       expect(
-            () => 1.99999999.shouldNotBeLessOrEqualTo(2),
+        () => 1.99999999.shouldNotBeLessOrEqualTo(2),
         failsTest,
       );
     });
@@ -273,36 +276,36 @@ void main() {
   group('not less', () {
     test('should return normally when greater', () {
       expect(
-            () => 2.shouldNotBeLessThan(1),
+        () => 2.shouldNotBeLessThan(1),
         returnsNormally,
       );
 
       expect(
-            () => 2.000000001.shouldNotBeLessThan(2),
+        () => 2.000000001.shouldNotBeLessThan(2),
         returnsNormally,
       );
     });
 
     test('should return normally when equal', () {
       expect(
-            () => 2.shouldNotBeLessThan(2),
+        () => 2.shouldNotBeLessThan(2),
         returnsNormally,
       );
 
       expect(
-            () => 2.0.shouldNotBeLessThan(2),
+        () => 2.0.shouldNotBeLessThan(2),
         returnsNormally,
       );
     });
 
     test('should fail when smaller', () {
       expect(
-            () => 1.shouldNotBeLessThan(2),
+        () => 1.shouldNotBeLessThan(2),
         failsTest,
       );
 
       expect(
-            () => 1.99999999.shouldNotBeLessThan(2),
+        () => 1.99999999.shouldNotBeLessThan(2),
         failsTest,
       );
     });
@@ -316,7 +319,7 @@ void main() {
       );
 
       expect(
-        () => 0.000000001.shouldBePositive(),
+        () => positiveNumberCloseToZero.shouldBePositive(),
         returnsNormally,
       );
     });
@@ -335,7 +338,7 @@ void main() {
       );
 
       expect(
-        () => (-0.99999999).shouldBePositive(),
+        () => negativeNumberCloseToZero.shouldBePositive(),
         failsTest,
       );
     });
@@ -344,31 +347,77 @@ void main() {
   group('negative', () {
     test('should return normally when negative', () {
       expect(
-            () => (-1).shouldBeNegative(),
+        () => (-1).shouldBeNegative(),
         returnsNormally,
       );
 
       expect(
-            () => (-0.99999999).shouldBeNegative(),
+        () => negativeNumberCloseToZero.shouldBeNegative(),
         returnsNormally,
       );
     });
 
     test('should fail when zero', () {
       expect(
-            () => 0.shouldBePositive(),
+        () => 0.shouldBePositive(),
         failsTest,
       );
     });
 
     test('should fail when positive', () {
       expect(
-            () => 1.shouldBeNegative(),
+        () => 1.shouldBeNegative(),
         failsTest,
       );
 
       expect(
-            () => 0.000000001.shouldBeNegative(),
+        () => positiveNumberCloseToZero.shouldBeNegative(),
+        failsTest,
+      );
+    });
+  });
+
+  group('zero', () {
+    test('should return normally when zero', () {
+      expect(
+        () => 0.shouldBeZero(),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when negative', () {
+      expect(
+        () => negativeNumberCloseToZero.shouldBeZero(),
+        failsTest,
+      );
+    });
+
+    test('should fail when positive', () {
+      expect(
+        () => positiveNumberCloseToZero.shouldBeZero(),
+        failsTest,
+      );
+    });
+  });
+
+  group('not zero', () {
+    test('should return normally when positive', () {
+      expect(
+        () => positiveNumberCloseToZero.shouldNotBeZero(),
+        returnsNormally,
+      );
+    });
+
+    test('should return normally when negative', () {
+      expect(
+        () => negativeNumberCloseToZero.shouldNotBeZero(),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when zero', () {
+      expect(
+        () => 0.shouldNotBeZero(),
         failsTest,
       );
     });

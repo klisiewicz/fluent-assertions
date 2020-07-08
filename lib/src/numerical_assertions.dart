@@ -27,8 +27,17 @@ extension NumericalAssertions on num {
   void shouldNotBeLessThan(num expected) => shouldBeGreaterOrEqualTo(expected);
 
   /// Asserts that the value is greater than zero.
-  void shouldBePositive() => expect(this > 0, isTrue);
+  void shouldBePositive() => expect(this, isPositive);
+
+  /// Asserts that the value is less or equal zero.
+  void shouldNotBePositive() => expect(this, isNonPositive);
 
   /// Asserts that the value is less than zero.
-  void shouldBeNegative() => expect(this < 0, isTrue);
+  void shouldBeNegative() => expect(this, isNegative);
+
+  /// Asserts that the value is zero.
+  void shouldBeZero() => expect(this, isZero);
+
+  /// Asserts that the value is not zero.
+  void shouldNotBeZero() => expect(this, isNonZero);
 }
