@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:fluent_assertions/fluent_assertions.dart';
+import 'package:test/test.dart';
 
 import 'matchers.dart';
 
@@ -31,12 +31,12 @@ void main() {
 
     test('should fail when smaller', () {
       expect(
-            () => 1.shouldBeGreaterOrEqualTo(2),
+        () => 1.shouldBeGreaterOrEqualTo(2),
         failsTest,
       );
 
       expect(
-            () => 1.99999999.shouldBeGreaterOrEqualTo(2),
+        () => 1.99999999.shouldBeGreaterOrEqualTo(2),
         failsTest,
       );
     });
@@ -45,36 +45,112 @@ void main() {
   group('greater', () {
     test('should return normally when greater', () {
       expect(
-            () => 2.shouldBeGreaterThan(1),
+        () => 2.shouldBeGreaterThan(1),
         returnsNormally,
       );
 
       expect(
-            () => 2.000000001.shouldBeGreaterThan(2),
+        () => 2.000000001.shouldBeGreaterThan(2),
         returnsNormally,
       );
     });
 
     test('should fail when equal', () {
       expect(
-            () => 2.shouldBeGreaterThan(2),
+        () => 2.shouldBeGreaterThan(2),
         failsTest,
       );
 
       expect(
-            () => 2.0.shouldBeGreaterThan(2),
+        () => 2.0.shouldBeGreaterThan(2),
         failsTest,
       );
     });
 
     test('should fail when smaller', () {
       expect(
-            () => 1.shouldBeGreaterThan(2),
+        () => 1.shouldBeGreaterThan(2),
         failsTest,
       );
 
       expect(
-            () => 1.99999999.shouldBeGreaterThan(2),
+        () => 1.99999999.shouldBeGreaterThan(2),
+        failsTest,
+      );
+    });
+  });
+
+  group('less or equal', () {
+    test('should return normally when less', () {
+      expect(
+        () => 1.shouldBeLessOrEqualTo(2),
+        returnsNormally,
+      );
+
+      expect(
+        () => 1.999999999.shouldBeLessOrEqualTo(2),
+        returnsNormally,
+      );
+    });
+
+    test('should return normally when equal', () {
+      expect(
+        () => 2.shouldBeLessOrEqualTo(2),
+        returnsNormally,
+      );
+
+      expect(
+        () => 2.0.shouldBeLessOrEqualTo(2),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when greater', () {
+      expect(
+        () => 2.shouldBeLessOrEqualTo(1),
+        failsTest,
+      );
+
+      expect(
+        () => 2.00000001.shouldBeLessOrEqualTo(2),
+        failsTest,
+      );
+    });
+  });
+
+  group('less', () {
+    test('should return normally when less', () {
+      expect(
+        () => 1.shouldBeLessThan(2),
+        returnsNormally,
+      );
+
+      expect(
+        () => 1.999999999.shouldBeLessThan(2),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when equal', () {
+      expect(
+        () => 2.shouldBeLessThan(2),
+        failsTest,
+      );
+
+      expect(
+        () => 2.0.shouldBeLessThan(2),
+        failsTest,
+      );
+    });
+
+    test('should fail when greater', () {
+      expect(
+        () => 2.shouldBeLessThan(1),
+        failsTest,
+      );
+
+      expect(
+        () => 2.00000001.shouldBeLessThan(2),
         failsTest,
       );
     });
