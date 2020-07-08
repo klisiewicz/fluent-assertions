@@ -35,6 +35,9 @@ extension NumericalAssertions on num {
   /// Asserts that the value is less than zero.
   void shouldBeNegative() => expect(this, isNegative);
 
+  /// Asserts that the value is greater or equal zero.
+  void shouldNotBeNegative() => expect(this, isNonNegative);
+
   /// Asserts that the value is zero.
   void shouldBeZero() => expect(this, isZero);
 

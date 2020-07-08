@@ -344,6 +344,39 @@ void main() {
     });
   });
 
+  group('not positive', () {
+    test('should return normally when negative', () {
+      expect(
+            () => (-1).shouldNotBePositive(),
+        returnsNormally,
+      );
+
+      expect(
+            () => negativeNumberCloseToZero.shouldNotBePositive(),
+        returnsNormally,
+      );
+    });
+
+    test('should return normally when zero', () {
+      expect(
+            () => 0.shouldNotBePositive(),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when positive', () {
+      expect(
+            () => 1.shouldNotBePositive(),
+        failsTest,
+      );
+
+      expect(
+            () => positiveNumberCloseToZero.shouldNotBePositive(),
+        failsTest,
+      );
+    });
+  });
+
   group('negative', () {
     test('should return normally when negative', () {
       expect(
@@ -372,6 +405,39 @@ void main() {
 
       expect(
         () => positiveNumberCloseToZero.shouldBeNegative(),
+        failsTest,
+      );
+    });
+  });
+
+  group('negative', () {
+    test('should return normally when positive', () {
+      expect(
+            () => 1.shouldNotBeNegative(),
+        returnsNormally,
+      );
+
+      expect(
+            () => positiveNumberCloseToZero.shouldNotBeNegative(),
+        returnsNormally,
+      );
+    });
+
+    test('should return normally when zero', () {
+      expect(
+            () => 0.shouldNotBeNegative(),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when negative', () {
+      expect(
+            () => (-1).shouldNotBeNegative(),
+        failsTest,
+      );
+
+      expect(
+            () => negativeNumberCloseToZero.shouldNotBeNegative(),
         failsTest,
       );
     });
