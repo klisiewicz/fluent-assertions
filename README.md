@@ -21,9 +21,9 @@ These assertions are available for all objects.
 
 ```dart
 final me = Person(name: 'Karol');
-final alsoMe = Person(name: 'Karol');
+final someoneElse = Person(name: 'Karol');
 me.shouldBe(me);
-me.shouldNotBe(alsoMe);
+me.shouldNotBe(someoneElse);
 ```
 
 ##### Subtypes
@@ -79,13 +79,16 @@ hasChildren.shouldNotBeTrue();
 
 ```dart
 1.shouldBePositive();
+1.shouldNotBeNegative();
 ```
 
 ```dart
 (-1).shouldBeNegative();
+(-1).shouldNotBePositive();
 ```
 
 ```dart
+0.shouldBeZero();
 1.shouldNotBeZero();
 ```
 
