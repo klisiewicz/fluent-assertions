@@ -92,6 +92,10 @@ hasChildren.shouldNotBeTrue();
 1.shouldNotBeZero();
 ```
 
+```dart
+0.999.shouldBeNear(1, delta: 0.01),
+```
+
 #### CharSequence Assertions
 
 #### Collection Assertions

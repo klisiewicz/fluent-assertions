@@ -44,4 +44,8 @@ extension NumericalAssertions on num {
 
   /// Asserts that the value is not zero.
   void shouldNotBeZero() => expect(this, isNonZero);
+
+  /// Asserts that the value is within [delta] of some [expected] value.
+  void shouldBeNear(num expected, {num delta = 0}) =>
+      expect(this, closeTo(expected, delta));
 }

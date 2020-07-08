@@ -4,8 +4,8 @@ import 'package:test/test.dart';
 import 'matchers.dart';
 
 void main() {
-  const positiveNumberCloseToZero = 0.000000001;
-  const negativeNumberCloseToZero = -0.999999999;
+  const positiveNumberCloseToZero = 0.00000000000000001;
+  const negativeNumberCloseToZero = -0.99999999999999999;
 
   group('greater or equal', () {
     test('should return normally when greater', () {
@@ -347,31 +347,31 @@ void main() {
   group('not positive', () {
     test('should return normally when negative', () {
       expect(
-            () => (-1).shouldNotBePositive(),
+        () => (-1).shouldNotBePositive(),
         returnsNormally,
       );
 
       expect(
-            () => negativeNumberCloseToZero.shouldNotBePositive(),
+        () => negativeNumberCloseToZero.shouldNotBePositive(),
         returnsNormally,
       );
     });
 
     test('should return normally when zero', () {
       expect(
-            () => 0.shouldNotBePositive(),
+        () => 0.shouldNotBePositive(),
         returnsNormally,
       );
     });
 
     test('should fail when positive', () {
       expect(
-            () => 1.shouldNotBePositive(),
+        () => 1.shouldNotBePositive(),
         failsTest,
       );
 
       expect(
-            () => positiveNumberCloseToZero.shouldNotBePositive(),
+        () => positiveNumberCloseToZero.shouldNotBePositive(),
         failsTest,
       );
     });
@@ -413,31 +413,31 @@ void main() {
   group('negative', () {
     test('should return normally when positive', () {
       expect(
-            () => 1.shouldNotBeNegative(),
+        () => 1.shouldNotBeNegative(),
         returnsNormally,
       );
 
       expect(
-            () => positiveNumberCloseToZero.shouldNotBeNegative(),
+        () => positiveNumberCloseToZero.shouldNotBeNegative(),
         returnsNormally,
       );
     });
 
     test('should return normally when zero', () {
       expect(
-            () => 0.shouldNotBeNegative(),
+        () => 0.shouldNotBeNegative(),
         returnsNormally,
       );
     });
 
     test('should fail when negative', () {
       expect(
-            () => (-1).shouldNotBeNegative(),
+        () => (-1).shouldNotBeNegative(),
         failsTest,
       );
 
       expect(
-            () => negativeNumberCloseToZero.shouldNotBeNegative(),
+        () => negativeNumberCloseToZero.shouldNotBeNegative(),
         failsTest,
       );
     });
@@ -484,6 +484,47 @@ void main() {
     test('should fail when zero', () {
       expect(
         () => 0.shouldNotBeZero(),
+        failsTest,
+      );
+    });
+  });
+
+  group('near', () {
+    test('should return normally when equal and no delta is given', () {
+      expect(
+        () => 1.shouldBeNear(1),
+        returnsNormally,
+      );
+    });
+
+    test(
+        'should return normally when the value is within lower delta bound',
+        () {
+      expect(
+        () => 0.6.shouldBeNear(1, delta: 0.4),
+        returnsNormally,
+      );
+    });
+
+    test(
+        'should return normally when the value within to upper delta bound',
+        () {
+      expect(
+        () => 1.4.shouldBeNear(1, delta: 0.4),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when value is lower than expected by delta value', () {
+      expect(
+        () => 0.59.shouldBeNear(1, delta: 0.4),
+        failsTest,
+      );
+    });
+
+    test('should fail when value is greater than expected by delta value', () {
+      expect(
+        () => 1.41.shouldBeNear(1, delta: 0.4),
         failsTest,
       );
     });
