@@ -21,9 +21,9 @@ These assertions are available for all objects.
 
 ```dart
 final me = Person(name: 'Karol');
-final alsoMe = Person(name: 'Karol');
+final someoneElse = Person(name: 'Karol');
 me.shouldBe(me);
-me.shouldNotBe(alsoMe);
+me.shouldNotBe(someoneElse);
 ```
 
 ##### Subtypes
@@ -60,6 +60,46 @@ hasChildren.shouldNotBeTrue();
 ```
 
 #### Numerical Assertions
+
+```dart
+2.shouldBeGreaterOrEqualTo(2);
+```
+
+```dart
+2.shouldBeGreaterThan(1);
+```
+
+```dart
+2.shouldBeLessOrEqualTo(2);
+```
+
+```dart
+1.shouldBeLessThan(2);
+```
+
+```dart
+1.shouldBePositive();
+1.shouldNotBeNegative();
+```
+
+```dart
+(-1).shouldBeNegative();
+(-1).shouldNotBePositive();
+```
+
+```dart
+0.shouldBeZero();
+1.shouldNotBeZero();
+```
+
+```dart
+0.999.shouldBeNear(1, delta: 0.01);
+```
+
+```dart
+0.shouldNotBeInRange(lowerBound: 1, upperBound: 6);
+1.shouldBeInRange(lowerBound: 1, upperBound: 6);
+```
 
 #### CharSequence Assertions
 
