@@ -32,6 +32,10 @@ void main() {
   test('a teenager should be below 18', () {
     teenager.age.shouldBeLessThan(18);
   });
+
+  test('a person age should be positive', () {
+    teenager.age.shouldBePositive();
+  });
 }
 
 

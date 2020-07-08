@@ -155,4 +155,70 @@ void main() {
       );
     });
   });
+
+  group('positive', () {
+    test('should return normally when positive', () {
+      expect(
+        () => 1.shouldBePositive(),
+        returnsNormally,
+      );
+
+      expect(
+        () => 0.000000001.shouldBePositive(),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when zero', () {
+      expect(
+        () => 0.shouldBePositive(),
+        failsTest,
+      );
+    });
+
+    test('should fail when negative', () {
+      expect(
+        () => (-1).shouldBePositive(),
+        failsTest,
+      );
+
+      expect(
+        () => (-0.99999999).shouldBePositive(),
+        failsTest,
+      );
+    });
+  });
+
+  group('negative', () {
+    test('should return normally when negative', () {
+      expect(
+            () => (-1).shouldBeNegative(),
+        returnsNormally,
+      );
+
+      expect(
+            () => (-0.99999999).shouldBeNegative(),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when zero', () {
+      expect(
+            () => 0.shouldBePositive(),
+        failsTest,
+      );
+    });
+
+    test('should fail when positive', () {
+      expect(
+            () => 1.shouldBeNegative(),
+        failsTest,
+      );
+
+      expect(
+            () => 0.000000001.shouldBeNegative(),
+        failsTest,
+      );
+    });
+  });
 }
