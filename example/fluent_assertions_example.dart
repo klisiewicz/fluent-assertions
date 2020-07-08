@@ -28,6 +28,10 @@ void main() {
   test('a teenager can driver a car', () {
     teenager.age.shouldBeGreaterThan(16);
   });
+
+  test('a teenager should be below 18', () {
+    teenager.age.shouldBeLessThan(18);
+  });
 }
 
 

@@ -69,6 +69,14 @@ hasChildren.shouldNotBeTrue();
 2.shouldBeGreaterThan(1);
 ```
 
+```dart
+2.shouldBeLessOrEqualTo(2);
+```
+
+```dart
+1.shouldBeLessThan(2);
+```
+
 #### CharSequence Assertions
 
 #### Collection Assertions
