@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-extension BasicAssertions<T> on T {
+extension BasicAssertions<T> on T? {
   /// Asserts that the value is structurally equal to [expected].
   void shouldBeEqualTo(T expected) => expect(this, equals(expected));
 
