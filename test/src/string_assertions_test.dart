@@ -1,13 +1,48 @@
+import 'package:fluent_assertions/src/string_assertions.dart';
 import 'package:test/test.dart';
 
+import 'matchers.dart';
+
 void main() {
-  group('should be equal to', () {});
+  group('should be equal to', () {
+    test('should return normally when equal', () {
+      expect(() => 'name'.shouldBeEqualTo('name'), returnsNormally);
+    });
 
-  group('should not be equal to', () {});
+    test('should fail when not equal', () {
+      expect(() => 'name'.shouldBeEqualTo('abc'), failsTest);
+    });
+  });
 
-  group('should start with', () {});
+  group('should not be equal to', () {
+    test('should fail when equal', () {
+      expect(() => 'name'.shouldNotBeEqualTo('name'), failsTest);
+    });
 
-  group('should not start with', () {});
+    test('should fail when not equal', () {
+      expect(() => 'name'.shouldNotBeEqualTo('abc'), returnsNormally);
+    });
+  });
+
+  group('should start with', () {
+    test('should return normally when start with', () {
+      expect(() => 'name'.shouldStartWith('n'), returnsNormally);
+    });
+
+    test('should fail when does not start with', () {
+      expect(() => 'name'.shouldBeEqualTo('a'), failsTest);
+    });
+  });
+
+  group('should not start with', () {
+    test('should fail when start with', () {
+      expect(() => 'name'.shouldNotStartWith('n'), failsTest);
+    });
+
+    test('should return normally when does not start with', () {
+      expect(() => 'name'.shouldNotStartWith('a'), returnsNormally);
+    });
+  });
 
   group('should end with', () {});
 

@@ -1,11 +1,29 @@
+import 'package:test/expect.dart';
+
 extension StringAssertions on String {
-  void shouldBeEqualTo(String expected) {}
+  void shouldBeEqualTo(String expected) {
+    expect(this, equals(expected));
+  }
 
-  void shouldNotBeEqualTo(String expected) {}
+  void shouldNotBeEqualTo(String expected) {
+    expect(this, isNot(equals(expected)));
+  }
 
-  void shouldStartWith() {}
+  void shouldStartWith(String expected) {
+    expect(
+      this.startsWith(expected),
+      isTrue,
+      reason: 'Expected the String $this to start with $expected',
+    );
+  }
 
-  void shouldNotStartWith() {}
+  void shouldNotStartWith(String expected) {
+    expect(
+      this.startsWith(expected),
+      isFalse,
+      reason: 'Expected the String $this to not start with $expected',
+    );
+  }
 
   void shouldEndWith() {}
 
