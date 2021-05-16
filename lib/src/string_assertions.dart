@@ -25,13 +25,37 @@ extension StringAssertions on String {
     );
   }
 
-  void shouldEndWith() {}
+  void shouldEndWith(String expected) {
+    expect(
+      this.endsWith(expected),
+      isTrue,
+      reason: 'Expected the String $this to end with $expected',
+    );
+  }
 
-  void shouldNotEndWith() {}
+  void shouldNotEndWith(String expected) {
+    expect(
+      this.endsWith(expected),
+      isFalse,
+      reason: 'Expected the String $this to not to end with $expected',
+    );
+  }
 
-  void shouldContain() {}
+  void shouldContain(String expected) {
+    expect(
+      this.contains(expected),
+      isTrue,
+      reason: 'Expected the String $this to contain $expected',
+    );
+  }
 
-  void shouldNotContain() {}
+  void shouldNotContain(String expected) {
+    expect(
+      this.contains(expected),
+      isFalse,
+      reason: 'Expected the String $this to not to contain $expected',
+    );
+  }
 
   void shouldContainSome() {}
 

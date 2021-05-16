@@ -44,13 +44,45 @@ void main() {
     });
   });
 
-  group('should end with', () {});
+  group('should end with', () {
+    test('should return normally when ends with', () {
+      expect(() => 'name'.shouldEndWith('me'), returnsNormally);
+    });
 
-  group('should not end with', () {});
+    test('should fail when does not end with', () {
+      expect(() => 'name'.shouldEndWith('ee'), failsTest);
+    });
+  });
 
-  group('should contain', () {});
+  group('should not end with', () {
+    test('should fail when ends with', () {
+      expect(() => 'name'.shouldNotEndWith('me'), failsTest);
+    });
 
-  group('should not contain', () {});
+    test('should return normally when does not end with', () {
+      expect(() => 'name'.shouldNotEndWith('ee'), returnsNormally);
+    });
+  });
+
+  group('should contain', () {
+    test('should return normally when contains', () {
+      expect(() => 'name'.shouldContain('am'), returnsNormally);
+    });
+
+    test('should fail when does not end with', () {
+      expect(() => 'name'.shouldContain('aa'), failsTest);
+    });
+  });
+
+  group('should not contain', () {
+    test('should fail when contains', () {
+      expect(() => 'name'.shouldNotContain('am'), failsTest);
+    });
+
+    test('should return normally when does not contain', () {
+      expect(() => 'name'.shouldNotContain('aa'), returnsNormally);
+    });
+  });
 
   group('should contain some', () {});
 
