@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+Added assertions for strings.
+
 ## 0.3.0
 
 Null safety migration.
