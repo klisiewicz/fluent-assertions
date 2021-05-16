@@ -1,3 +1,9 @@
+# Changelog
+
+## 0.3.0
+
+Null safety migration.
+
 ## 0.2.0
 
 Added assertions for numerical values.
