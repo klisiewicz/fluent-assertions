@@ -137,7 +137,7 @@ void main() {
   });
 
   group('nullability', () {
-    const Person nullPerson = null;
+    const Person? nullPerson = null;
     final me = Person(name: 'Karol');
 
     test('should return normally when null', () {

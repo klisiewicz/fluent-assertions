@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:fluent_assertions/fluent_assertions.dart';
+import 'package:test/test.dart';
 
 void main() {
   const adult = Person(name: 'Karol', age: 30);
@@ -42,24 +42,23 @@ void main() {
   });
 }
 
-
 class Person {
   final String name;
   final int age;
   bool get isAdult => age >= 18;
 
   const Person({
-    this.name,
-    this.age,
+    required this.name,
+    required this.age,
   });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Person &&
-              runtimeType == other.runtimeType &&
-              name == other.name &&
-              age == other.age;
+      other is Person &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          age == other.age;
 
   @override
   int get hashCode => name.hashCode ^ age.hashCode;
