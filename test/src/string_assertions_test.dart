@@ -128,9 +128,35 @@ void main() {
     });
   });
 
-  group('should be null or empty', () {});
+  group('should be null or empty', () {
+    test('should return normally when is empty', () {
+      expect(() => ''.shouldBeNullOrEmpty(), returnsNormally);
+    });
 
-  group('should not be null or empty', () {});
+    test('should return normally when is null', () {
+      const String? name = null;
+      expect(() => name.shouldBeNullOrEmpty(), returnsNormally);
+    });
+
+    test('should fail when is not empty', () {
+      expect(() => 'name'.shouldBeNullOrEmpty(), failsTest);
+    });
+  });
+
+  group('should not be null or empty', () {
+    test('should fail when is empty', () {
+      expect(() => ''.shouldNotBeNullOrEmpty(), failsTest);
+    });
+
+    test('should fail when is null', () {
+      const String? name = null;
+      expect(() => name.shouldNotBeNullOrEmpty(), failsTest);
+    });
+
+    test('should return normally when is not empty', () {
+      expect(() => 'name'.shouldNotBeNullOrEmpty(), returnsNormally);
+    });
+  });
 
   group('should be blank', () {
     test('should return normally when is blank', () {
@@ -156,7 +182,41 @@ void main() {
     });
   });
 
-  group('should be null or blank', () {});
+  group('should be null or blank', () {
+    test('should return normally when is empty', () {
+      expect(() => ''.shouldBeNullOrBlank(), returnsNormally);
+    });
 
-  group('should not be null or blank', () {});
+    test('should return normally when is blank', () {
+      expect(() => ' '.shouldBeNullOrBlank(), returnsNormally);
+    });
+
+    test('should return normally when is null', () {
+      const String? name = null;
+      expect(() => name.shouldBeNullOrBlank(), returnsNormally);
+    });
+
+    test('should fail when is not empty', () {
+      expect(() => 'name'.shouldBeNullOrBlank(), failsTest);
+    });
+  });
+
+  group('should not be null or blank', () {
+    test('should fail when is empty', () {
+      expect(() => ''.shouldNotBeNullOrBlank(), failsTest);
+    });
+
+    test('should fail when is blank', () {
+      expect(() => ' '.shouldNotBeNullOrBlank(), failsTest);
+    });
+
+    test('should fail when is null', () {
+      const String? name = null;
+      expect(() => name.shouldNotBeNullOrBlank(), failsTest);
+    });
+
+    test('should return normally when is not empty', () {
+      expect(() => 'name'.shouldNotBeNullOrBlank(), returnsNormally);
+    });
+  });
 }

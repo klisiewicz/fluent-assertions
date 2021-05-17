@@ -111,11 +111,35 @@ extension StringAssertions on String {
 }
 
 extension StringNullableAssertions on String? {
-  void shouldBeNullOrEmpty() {}
+  void shouldBeNullOrEmpty() {
+    expect(
+      this?.isEmpty ?? true,
+      isTrue,
+      reason: 'Expected String to be null or empty, but was $this',
+    );
+  }
 
-  void shouldNotBeNullOrEmpty() {}
+  void shouldNotBeNullOrEmpty() {
+    expect(
+      this?.isNotEmpty ?? false,
+      isTrue,
+      reason: 'Expected String to not to be null or empty, but was $this',
+    );
+  }
 
-  void shouldBeNullOrBlank() {}
+  void shouldBeNullOrBlank() {
+    expect(
+      this?.trim().isEmpty ?? true,
+      isTrue,
+      reason: 'Expected String to be blank or null, but was $this',
+    );
+  }
 
-  void shouldNotBeNullOrBlank() {}
+  void shouldNotBeNullOrBlank() {
+    expect(
+      this?.trim().isNotEmpty ?? false,
+      isTrue,
+      reason: 'Expected String to not to be blank or null, but was $this',
+    );
+  }
 }
