@@ -88,21 +88,73 @@ void main() {
 
   group('should contain none', () {});
 
-  group('should match', () {});
+  group('should match', () {
+    test('should return normally when matches reg exp', () {
+      expect(() => 'name'.shouldMatch(RegExp(r"(\w+)")), returnsNormally);
+    });
 
-  group('should not match', () {});
+    test('should fail when does not match reg exp', () {
+      expect(() => 'name'.shouldMatch(RegExp(r"(\d+)")), failsTest);
+    });
+  });
 
-  group('should be empty', () {});
+  group('should not match', () {
+    test('should fail when matches reg exp', () {
+      expect(() => 'name'.shouldNotMatch(RegExp(r"(\w+)")), failsTest);
+    });
 
-  group('should not be empty', () {});
+    test('should return normally when matches reg exp', () {
+      expect(() => 'name'.shouldNotMatch(RegExp(r"(\d+)")), returnsNormally);
+    });
+  });
+
+  group('should be empty', () {
+    test('should return normally when is empty', () {
+      expect(() => ''.shouldBeEmpty(), returnsNormally);
+    });
+
+    test('should fail when is not empty', () {
+      expect(() => ' '.shouldBeEmpty(), failsTest);
+    });
+  });
+
+  group('should not be empty', () {
+    test('should fail test when is empty', () {
+      expect(() => ''.shouldNotBeEmpty(), failsTest);
+    });
+
+    test('should return normally not empty', () {
+      expect(() => ' '.shouldNotBeEmpty(), returnsNormally);
+    });
+  });
 
   group('should be null or empty', () {});
 
   group('should not be null or empty', () {});
 
-  group('should be blank', () {});
+  group('should be blank', () {
+    test('should return normally when is blank', () {
+      expect(() => ' '.shouldBeBlank(), returnsNormally);
+    });
 
-  group('should not be blank', () {});
+    test('should return normally when is empty', () {
+      expect(() => ''.shouldBeBlank(), returnsNormally);
+    });
+
+    test('should fail when is not blank', () {
+      expect(() => 'name'.shouldBeBlank(), failsTest);
+    });
+  });
+
+  group('should not be blank', () {
+    test('should fail test when is blank', () {
+      expect(() => ' '.shouldNotBeBlank(), failsTest);
+    });
+
+    test('should return normally is not blank', () {
+      expect(() => 'name'.shouldNotBeBlank(), returnsNormally);
+    });
+  });
 
   group('should be null or blank', () {});
 

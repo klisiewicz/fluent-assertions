@@ -57,21 +57,57 @@ extension StringAssertions on String {
     );
   }
 
-  void shouldContainSome() {}
+  void shouldContainSome(Iterable<String> things) {}
 
-  void shouldContainNone() {}
+  void shouldContainNone(Iterable<String> things) {}
 
-  void shouldMatch() {}
+  void shouldMatch(RegExp regExp) {
+    expect(
+      regExp.hasMatch(this),
+      isTrue,
+      reason: 'Expected $this to match ${regExp.pattern}',
+    );
+  }
 
-  void shouldNotMatch() {}
+  void shouldNotMatch(RegExp regExp) {
+    expect(
+      regExp.hasMatch(this),
+      isFalse,
+      reason: 'Expected $this to not to match ${regExp.pattern}',
+    );
+  }
 
-  void shouldBeEmpty() {}
+  void shouldBeEmpty() {
+    expect(
+      this.isEmpty,
+      isTrue,
+      reason: 'Expected String to be empty, but was $this',
+    );
+  }
 
-  void shouldNotBeEmpty() {}
+  void shouldNotBeEmpty() {
+    expect(
+      this.isNotEmpty,
+      isTrue,
+      reason: 'Expected String to not to be empty, but was $this',
+    );
+  }
 
-  void shouldBeBlank() {}
+  void shouldBeBlank() {
+    expect(
+      trim().isEmpty,
+      isTrue,
+      reason: 'Expected String to be blank, but was $this',
+    );
+  }
 
-  void shouldNotBeBlank() {}
+  void shouldNotBeBlank() {
+    expect(
+      trim().isNotEmpty,
+      isTrue,
+      reason: 'Expected String to not to be blank, but was $this',
+    );
+  }
 }
 
 extension StringNullableAssertions on String? {
