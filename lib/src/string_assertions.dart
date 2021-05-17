@@ -11,32 +11,32 @@ extension StringAssertions on String {
 
   void shouldStartWith(String expected) {
     expect(
-      this.startsWith(expected),
-      isTrue,
+      this,
+      startsWith(expected),
       reason: 'Expected the String $this to start with $expected',
     );
   }
 
   void shouldNotStartWith(String expected) {
     expect(
-      this.startsWith(expected),
-      isFalse,
+      this,
+      isNot(startsWith(expected)),
       reason: 'Expected the String $this to not start with $expected',
     );
   }
 
   void shouldEndWith(String expected) {
     expect(
-      this.endsWith(expected),
-      isTrue,
+      this,
+      endsWith(expected),
       reason: 'Expected the String $this to end with $expected',
     );
   }
 
   void shouldNotEndWith(String expected) {
     expect(
-      this.endsWith(expected),
-      isFalse,
+      this,
+      isNot(endsWith(expected)),
       reason: 'Expected the String $this to not to end with $expected',
     );
   }
