@@ -1,4 +1,4 @@
-import 'package:test/expect.dart';
+import 'package:test/test.dart';
 
 extension StringAssertions on String {
   void shouldBeEqualTo(String expected) {
@@ -7,6 +7,14 @@ extension StringAssertions on String {
 
   void shouldNotBeEqualTo(String expected) {
     expect(this, isNot(equals(expected)));
+  }
+
+  void shouldBeEqualToIgnoringCase(String expected) {
+    expect(this, equalsIgnoringCase(expected));
+  }
+
+  void shouldNotBeEqualToIgnoringCase(String expected) {
+    expect(this, isNot(equalsIgnoringCase(expected)));
   }
 
   void shouldStartWith(String expected) {
@@ -65,19 +73,11 @@ extension StringAssertions on String {
     );
   }
 
-  void shouldContainSome(Iterable<String> items) {
+  void shouldContainAllInOrder(List<String> items) {
     expect(
-      split(''),
-      isNot(containsAll(items)),
-      reason: 'Expected $this to contain at least one of $items',
-    );
-  }
-
-  void shouldContainNone(Iterable<String> items) {
-    expect(
-      split(''),
-      isNot(containsAll(items)),
-      reason: 'Expected $this to not contain any of $items',
+      this,
+      stringContainsInOrder(items),
+      reason: 'Expected $this to contain all of $items',
     );
   }
 
