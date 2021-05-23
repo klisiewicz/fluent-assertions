@@ -57,9 +57,29 @@ extension StringAssertions on String {
     );
   }
 
-  void shouldContainSome(Iterable<String> things) {}
+  void shouldContainAll(Iterable<String> items) {
+    expect(
+      split(''),
+      containsAll(items),
+      reason: 'Expected $this to contain all of $items',
+    );
+  }
 
-  void shouldContainNone(Iterable<String> things) {}
+  void shouldContainSome(Iterable<String> items) {
+    expect(
+      split(''),
+      isNot(containsAll(items)),
+      reason: 'Expected $this to contain at least one of $items',
+    );
+  }
+
+  void shouldContainNone(Iterable<String> items) {
+    expect(
+      split(''),
+      isNot(containsAll(items)),
+      reason: 'Expected $this to not contain any of $items',
+    );
+  }
 
   void shouldMatch(RegExp regExp) {
     expect(

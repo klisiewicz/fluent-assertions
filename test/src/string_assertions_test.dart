@@ -84,9 +84,103 @@ void main() {
     });
   });
 
-  group('should contain some', () {});
+  group('should contain all', () {
+    test('should return normally when contains all in order', () {
+      expect(
+        () => 'name'.shouldContainAll(['n', 'a', 'm', 'e']),
+        returnsNormally,
+      );
+      expect(
+        () => 'name'.shouldContainAll(['n', 'a']),
+        returnsNormally,
+      );
+    });
 
-  group('should contain none', () {});
+    test('should return normally when contains all in any order', () {
+      expect(
+        () => 'name'.shouldContainAll(['e', 'm', 'a', 'n']),
+        returnsNormally,
+      );
+      expect(
+        () => 'name'.shouldContainAll(['a', 'n']),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when contains some', () {
+      expect(
+        () => 'name'.shouldContainAll(['n', 'x']),
+        failsTest,
+      );
+    });
+
+    test('should fail when contains none', () {
+      expect(
+        () => 'name'.shouldContainAll(['x', 'y']),
+        failsTest,
+      );
+    });
+  });
+
+  group('should contain some', () {
+    test('should return normally when contains all in order', () {
+      expect(
+        () => 'name'.shouldContainSome(['n', 'a']),
+        returnsNormally,
+      );
+    });
+
+    test('should return normally when contains all in any order', () {
+      expect(
+        () => 'name'.shouldContainSome(['a', 'n']),
+        returnsNormally,
+      );
+    });
+
+    test('should return normally when contains some', () {
+      expect(
+        () => 'name'.shouldContainSome(['n', 'x']),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when contains none', () {
+      expect(
+        () => 'name'.shouldContainAll(['x', 'y']),
+        failsTest,
+      );
+    });
+  });
+
+  group('should contain none', () {
+    test('should fail when contains all in order', () {
+      expect(
+        () => 'name'.shouldContainNone(['n', 'a', 'm', 'e']),
+        failsTest,
+      );
+    });
+
+    test('should fail when contains all in any order', () {
+      expect(
+        () => 'name'.shouldContainNone(['e', 'm', 'a', 'n']),
+        failsTest,
+      );
+    });
+
+    test('should fail when contains some', () {
+      expect(
+        () => 'name'.shouldContainNone(['a', 'x']),
+        failsTest,
+      );
+    });
+
+    test('should return normally when contains none', () {
+      expect(
+        () => 'name'.shouldContainNone(['x', 'y']),
+        returnsNormally,
+      );
+    });
+  });
 
   group('should match', () {
     test('should return normally when matches reg exp', () {
