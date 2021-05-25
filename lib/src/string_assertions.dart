@@ -65,6 +65,22 @@ extension StringAssertions on String {
     );
   }
 
+  void shouldEndWithIgnoringCase(String expected) {
+    expect(
+      toLowerCase(),
+      endsWith(expected.toLowerCase()),
+      reason: 'Expected the String $this to end with $expected',
+    );
+  }
+
+  void shouldNotEndWithIgnoringCase(String expected) {
+    expect(
+      toLowerCase(),
+      isNot(endsWith(expected.toLowerCase())),
+      reason: 'Expected the String $this to not to end with $expected',
+    );
+  }
+
   void shouldContain(String expected) {
     expect(
       this.contains(expected),

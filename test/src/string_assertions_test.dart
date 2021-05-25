@@ -118,8 +118,12 @@ void main() {
   });
 
   group('should end with', () {
-    test('should return normally when ends with', () {
+    test('should return normally when ends with same case', () {
       expect(() => 'name'.shouldEndWith('me'), returnsNormally);
+    });
+
+    test('should fail when ends with different case', () {
+      expect(() => 'name'.shouldEndWith('ME'), failsTest);
     });
 
     test('should fail when does not end with', () {
@@ -128,12 +132,44 @@ void main() {
   });
 
   group('should not end with', () {
-    test('should fail when ends with', () {
+    test('should fail when ends with same case', () {
       expect(() => 'name'.shouldNotEndWith('me'), failsTest);
+    });
+
+    test('should return normally when ends with different case', () {
+      expect(() => 'name'.shouldNotEndWith('ME'), returnsNormally);
     });
 
     test('should return normally when does not end with', () {
       expect(() => 'name'.shouldNotEndWith('ee'), returnsNormally);
+    });
+  });
+
+  group('should end with ignoring case', () {
+    test('should return normally when ends with same case', () {
+      expect(() => 'name'.shouldEndWithIgnoringCase('me'), returnsNormally);
+    });
+
+    test('should return normally when ends with different case', () {
+      expect(() => 'name'.shouldEndWithIgnoringCase('ME'), returnsNormally);
+    });
+
+    test('should fail when does not end with', () {
+      expect(() => 'name'.shouldEndWithIgnoringCase('ee'), failsTest);
+    });
+  });
+
+  group('should not end with', () {
+    test('should fail when ends with same case', () {
+      expect(() => 'name'.shouldNotEndWithIgnoringCase('me'), failsTest);
+    });
+
+    test('should fail when ends with different case', () {
+      expect(() => 'name'.shouldNotEndWithIgnoringCase('ME'), failsTest);
+    });
+
+    test('should return normally when does not end with', () {
+      expect(() => 'name'.shouldNotEndWithIgnoringCase('ee'), returnsNormally);
     });
   });
 

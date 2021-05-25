@@ -123,6 +123,11 @@ hasChildren.shouldNotBeTrue();
 'I love Flutter'.shouldNotEndWith('Xamarin');
 ```
 
+```dart
+'I love Flutter'.shouldEndWithIgnoringCase('Flutter');
+'I love Flutter'.shouldNotEndWithIgnoringCase('Xamarin');
+```
+
 #### Collection Assertions
 
 ## Features and bugs
