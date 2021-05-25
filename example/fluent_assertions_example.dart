@@ -40,6 +40,14 @@ void main() {
   test('a person age should be positive', () {
     teenager.age.shouldBePositive();
   });
+
+  test('a person name should not be null or blank', () {
+    adult.name.shouldNotBeNullOrBlank();
+  });
+
+  test('a person name should contain only letters', () {
+    adult.name.shouldMatch(RegExp('[a-zA-Z]'));
+  });
 }
 
 class Person {

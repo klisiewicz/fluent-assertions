@@ -101,7 +101,22 @@ hasChildren.shouldNotBeTrue();
 1.shouldBeInRange(lowerBound: 1, upperBound: 6);
 ```
 
-#### CharSequence Assertions
+#### String Assertions
+
+```dart
+'Flutter'.shouldBeEqualToIgnoringCase('FLUTTER');
+'Flutter'.shouldNotBeEqualToIgnoringCase('Xamarin');
+```
+
+```dart
+'Flutter rules'.shouldStartWith('Flutter');
+'Flutter rules'.shouldNotStartWith('Xamarin');
+```
+
+```dart
+'I love Flutter'.shouldEndWith('Flutter');
+'I love Flutter'.shouldNotEndWith('Xamarin');
+```
 
 #### Collection Assertions
 
