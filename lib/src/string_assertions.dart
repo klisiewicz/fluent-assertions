@@ -33,6 +33,22 @@ extension StringAssertions on String {
     );
   }
 
+  void shouldStartWithIgnoringCase(String expected) {
+    expect(
+      toLowerCase(),
+      startsWith(expected.toLowerCase()),
+      reason: 'Expected the String $this to start with $expected',
+    );
+  }
+
+  void shouldNotStartWithIgnoringCase(String expected) {
+    expect(
+      toLowerCase(),
+      isNot(startsWith(expected.toLowerCase())),
+      reason: 'Expected the String $this to not start with $expected',
+    );
+  }
+
   void shouldEndWith(String expected) {
     expect(
       this,

@@ -69,6 +69,10 @@ void main() {
     test('should fail when does not start with', () {
       expect(() => 'name'.shouldBeEqualTo('a'), failsTest);
     });
+
+    test('should fail when starts with different case', () {
+      expect(() => 'name'.shouldBeEqualTo('N'), failsTest);
+    });
   });
 
   group('should not start with', () {
@@ -76,8 +80,40 @@ void main() {
       expect(() => 'name'.shouldNotStartWith('n'), failsTest);
     });
 
+    test('should return normally when starts with different case', () {
+      expect(() => 'name'.shouldNotStartWith('N'), returnsNormally);
+    });
+
     test('should return normally when does not start with', () {
       expect(() => 'name'.shouldNotStartWith('a'), returnsNormally);
+    });
+  });
+
+  group('should start with ignoring case', () {
+    test('should return normally when start with same case', () {
+      expect(() => 'name'.shouldStartWithIgnoringCase('n'), returnsNormally);
+    });
+
+    test('should return normally when starts with different case', () {
+      expect(() => 'name'.shouldStartWithIgnoringCase('N'), returnsNormally);
+    });
+
+    test('should fail when does not start with', () {
+      expect(() => 'name'.shouldStartWithIgnoringCase('a'), failsTest);
+    });
+  });
+
+  group('should not start with ignoring case', () {
+    test('should fail when start with same case', () {
+      expect(() => 'name'.shouldNotStartWithIgnoringCase('n'), failsTest);
+    });
+
+    test('should fail when starts with different case', () {
+      expect(() => 'name'.shouldNotStartWithIgnoringCase('N'), failsTest);
+    });
+
+    test('should return normally when does not start with', () {
+      expect(() => 'name'.shouldNotStartWithIgnoringCase('a'), returnsNormally);
     });
   });
 
