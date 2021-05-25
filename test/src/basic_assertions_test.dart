@@ -103,8 +103,12 @@ void main() {
 
   group('reference equality', () {
     group('objects', () {
-      const me = Person(name: 'Karol');
-      const alsoMe = Person(name: 'Karol');
+      // In this case we need explicitly not to use const constructor to create
+      // different instances of objects.
+      // ignore: prefer_const_constructors
+      final me = Person(name: 'Karol');
+      // ignore: prefer_const_constructors
+      final alsoMe = Person(name: 'Karol');
 
       test('should return normally when same instance', () {
         expect(
