@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+
+* Added assertions for strings.
+* Downgraded test package to 1.16.5.
+
 ## 0.3.0
 
 Null safety migration.

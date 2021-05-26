@@ -101,7 +101,77 @@ hasChildren.shouldNotBeTrue();
 1.shouldBeInRange(lowerBound: 1, upperBound: 6);
 ```
 
-#### CharSequence Assertions
+#### String Assertions
+
+```dart
+'Flutter'.shouldBeEqualToIgnoringCase('FLUTTER');
+'Flutter'.shouldNotBeEqualToIgnoringCase('Xamarin');
+```
+
+```dart
+'Flutter rules'.shouldStartWith('Flutter');
+'Flutter rules'.shouldNotStartWith('Xamarin');
+```
+
+```dart
+'Flutter rules'.shouldStartWithIgnoringCase('FLUTTER');
+'Flutter rules'.shouldNotStartWithIgnoringCase('Xamarin');
+```
+
+```dart
+'I love Flutter'.shouldEndWith('Flutter');
+'I love Flutter'.shouldNotEndWith('Xamarin');
+```
+
+```dart
+'I love Flutter'.shouldEndWithIgnoringCase('flutter');
+'I love Flutter'.shouldNotEndWithIgnoringCase('xamarin');
+```
+
+```dart
+'I love Flutter'.shouldContain('love');
+'I love Flutter'.shouldNotContain('hate');
+```
+
+```dart
+'I love Flutter'.shouldContainIgnoringCase('LOVE');
+'I love Flutter'.shouldNotContainIgnoringCase('HATE');
+```
+
+```dart
+'I love Flutter'.shouldContainAll(['Flutter', 'love']);
+'I love Flutter'.shouldContainAllIgnoringCase(['flutter', 'love']);
+```
+
+```dart
+'I love Flutter'.shouldContainAllInOrder(['love', 'Flutter']);
+'I love Flutter'.shouldContainAllInOrderIgnoringCase(['Love', 'Flutter']);
+```
+
+```dart
+'12345'.shouldMatch(r'\d');
+'Hello'.shouldNotMatch(r'\d');
+```
+
+```dart
+''.shouldBeEmpty()
+'name'.shouldNotBeEmpty()
+```
+
+```dart
+''.shouldBeNullOrEmpty()
+'name'.shouldNotBeNullOrEmpty()
+```
+
+```dart
+' '.shouldBeBlank()
+'name'.shouldNotBeBlank()
+```
+
+```dart
+' '.shouldBeNullOrBlank()
+'name'.shouldNotBeNullOrBlank()
+```
 
 #### Collection Assertions
 

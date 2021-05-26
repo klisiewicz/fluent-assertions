@@ -689,8 +689,7 @@ void main() {
         );
       });
 
-      test('should fail when value is higher than the lower bound',
-          () {
+      test('should fail when value is higher than the lower bound', () {
         expect(
           () => positiveNumberCloseToZero.shouldNotBeInRange(lowerBound: 0),
           failsTest,

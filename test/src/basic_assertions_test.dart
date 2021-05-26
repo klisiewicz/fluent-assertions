@@ -67,9 +67,9 @@ void main() {
     });
 
     group('objects', () {
-      final me = Person(name: 'Karol');
-      final alsoMe = Person(name: 'Karol');
-      final someoneElse = Person(name: 'Janusz');
+      const me = Person(name: 'Karol');
+      const alsoMe = Person(name: 'Karol');
+      const someoneElse = Person(name: 'Janusz');
 
       test('should return normally when equal', () {
         expect(
@@ -103,7 +103,11 @@ void main() {
 
   group('reference equality', () {
     group('objects', () {
+      // In this case we need explicitly not to use const constructor to create
+      // different instances of objects.
+      // ignore: prefer_const_constructors
       final me = Person(name: 'Karol');
+      // ignore: prefer_const_constructors
       final alsoMe = Person(name: 'Karol');
 
       test('should return normally when same instance', () {
@@ -138,7 +142,7 @@ void main() {
 
   group('nullability', () {
     const Person? nullPerson = null;
-    final me = Person(name: 'Karol');
+    const me = Person(name: 'Karol');
 
     test('should return normally when null', () {
       expect(
