@@ -140,7 +140,12 @@ hasChildren.shouldNotBeTrue();
 
 ```dart
 'I love Flutter'.shouldContainAll(['Flutter', 'love']);
-'I love Flutter'.shouldContainAllIgnoringCase(['flutter', 'LOVE']);
+'I love Flutter'.shouldContainAllIgnoringCase(['flutter', 'love']);
+```
+
+```dart
+'I love Flutter'.shouldContainAllInOrder(['love', 'Flutter']);
+'I love Flutter'.shouldContainAllInOrderIgnoringCase(['Love', 'Flutter']);
 ```
 
 ```dart

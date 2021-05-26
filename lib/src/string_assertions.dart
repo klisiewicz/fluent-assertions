@@ -137,6 +137,14 @@ extension StringAssertions on String {
     );
   }
 
+  void shouldContainAllInOrderIgnoringCase(List<String> items) {
+    expect(
+      toLowerCase(),
+      stringContainsInOrder(items.map((item) => item.toLowerCase()).toList()),
+      reason: 'Expected $this to contain all of $items',
+    );
+  }
+
   void shouldMatch(dynamic regExp) {
     expect(
       this,

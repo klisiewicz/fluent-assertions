@@ -356,6 +356,36 @@ void main() {
     });
   });
 
+  group('should contain all in order ignoringCase', () {
+    test('should return normally when contains all in order', () {
+      expect(
+        () => 'name'.shouldContainAllInOrderIgnoringCase(['N', 'a']),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when contains all, but not in order', () {
+      expect(
+        () => 'name'.shouldContainAllInOrderIgnoringCase(['a', 'N']),
+        failsTest,
+      );
+    });
+
+    test('should fail when contains some', () {
+      expect(
+        () => 'name'.shouldContainAllInOrderIgnoringCase(['N', 'x']),
+        failsTest,
+      );
+    });
+
+    test('should fail when contains none', () {
+      expect(
+        () => 'name'.shouldContainAllInOrderIgnoringCase(['x', 'y']),
+        failsTest,
+      );
+    });
+  });
+
   group('should match', () {
     test('should return normally when matches reg exp', () {
       expect(() => 'name'.shouldMatch(RegExp(r"(\w+)")), returnsNormally);
