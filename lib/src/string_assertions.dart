@@ -121,6 +121,14 @@ extension StringAssertions on String {
     );
   }
 
+  void shouldContainAllIgnoringCase(Iterable<String> items) {
+    expect(
+      toLowerCase().split(''),
+      containsAll(items.map((item) => item.toLowerCase())),
+      reason: 'Expected $this to contain all of $items',
+    );
+  }
+
   void shouldContainAllInOrder(List<String> items) {
     expect(
       this,

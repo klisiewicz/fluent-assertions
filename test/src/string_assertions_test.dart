@@ -262,6 +262,13 @@ void main() {
       );
     });
 
+    test('should fail when contains all but with different case', () {
+      expect(
+        () => 'name'.shouldContainAll(['N', 'A']),
+        failsTest,
+      );
+    });
+
     test('should fail when contains some', () {
       expect(
         () => 'name'.shouldContainAll(['n', 'x']),
@@ -272,6 +279,40 @@ void main() {
     test('should fail when contains none', () {
       expect(
         () => 'name'.shouldContainAll(['x', 'y']),
+        failsTest,
+      );
+    });
+  });
+
+  group('should contain all ignoring case', () {
+    test(
+        'should return normally when contains all in order with different case',
+        () {
+      expect(
+        () => 'name'.shouldContainAllIgnoringCase(['N', 'a', 'm', 'E']),
+        returnsNormally,
+      );
+    });
+
+    test(
+        'should return normally when contains all in any order with different case',
+        () {
+      expect(
+        () => 'name'.shouldContainAllIgnoringCase(['E', 'M', 'a', 'n']),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when contains some', () {
+      expect(
+        () => 'name'.shouldContainAllIgnoringCase(['N', 'x']),
+        failsTest,
+      );
+    });
+
+    test('should fail when contains none', () {
+      expect(
+        () => 'name'.shouldContainAllIgnoringCase(['x', 'y']),
         failsTest,
       );
     });

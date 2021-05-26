@@ -138,6 +138,11 @@ hasChildren.shouldNotBeTrue();
 'I love Flutter'.shouldNotContainIgnoringCase('HATE');
 ```
 
+```dart
+'I love Flutter'.shouldContainAll(['Flutter', 'love']);
+'I love Flutter'.shouldContainAllIgnoringCase(['flutter', 'LOVE']);
+```
+
 #### Collection Assertions
 
 ## Features and bugs
