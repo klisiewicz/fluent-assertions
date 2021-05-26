@@ -1,22 +1,18 @@
 import 'package:test/test.dart';
 
 extension StringAssertions on String {
-  void shouldBeEqualTo(String expected) {
-    expect(this, equals(expected));
-  }
-
-  void shouldNotBeEqualTo(String expected) {
-    expect(this, isNot(equals(expected)));
-  }
-
+  /// Asserts that the value is equal to [expected] ignoring case sensitivity.
   void shouldBeEqualToIgnoringCase(String expected) {
     expect(this, equalsIgnoringCase(expected));
   }
 
+  /// Asserts that the value is not equal to [expected] ignoring
+  /// case sensitivity.
   void shouldNotBeEqualToIgnoringCase(String expected) {
     expect(this, isNot(equalsIgnoringCase(expected)));
   }
 
+  /// Asserts that the value starts with [expected] with case sensitivity.
   void shouldStartWith(String expected) {
     expect(
       this,
@@ -25,6 +21,8 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value doesn't starts with [expected]
+  /// with case sensitivity.
   void shouldNotStartWith(String expected) {
     expect(
       this,
@@ -33,6 +31,7 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value starts with [expected] ignoring case sensitivity.
   void shouldStartWithIgnoringCase(String expected) {
     expect(
       toLowerCase(),
@@ -41,6 +40,8 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value doesn't starts with [expected]
+  /// ignoring case sensitivity.
   void shouldNotStartWithIgnoringCase(String expected) {
     expect(
       toLowerCase(),
@@ -49,6 +50,7 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value ends with [expected] with case sensitivity.
   void shouldEndWith(String expected) {
     expect(
       this,
@@ -57,6 +59,7 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value doesn't end with [expected] with case sensitivity.
   void shouldNotEndWith(String expected) {
     expect(
       this,
@@ -65,6 +68,7 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value ends with [expected] ignoring case sensitivity.
   void shouldEndWithIgnoringCase(String expected) {
     expect(
       toLowerCase(),
@@ -73,6 +77,8 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value doesn't end with [expected]
+  /// ignoring case sensitivity.
   void shouldNotEndWithIgnoringCase(String expected) {
     expect(
       toLowerCase(),
@@ -81,6 +87,7 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value contains [expected] with case sensitivity.
   void shouldContain(String expected) {
     expect(
       this.contains(expected),
@@ -89,6 +96,7 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value does not contain [expected] with case sensitivity.
   void shouldNotContain(String expected) {
     expect(
       this.contains(expected),
@@ -97,6 +105,7 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value contains [expected] ignoring case sensitivity.
   void shouldContainIgnoringCase(String expected) {
     expect(
       toLowerCase().contains(expected.toLowerCase()),
@@ -105,6 +114,8 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value doesn't contain [expected]
+  /// ignoring case sensitivity.
   void shouldNotContainIgnoringCase(String expected) {
     expect(
       toLowerCase().contains(expected.toLowerCase()),
@@ -113,6 +124,8 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value contains a list of [items] in any order
+  /// with case sensitivity.
   void shouldContainAll(Iterable<String> items) {
     expect(
       split(''),
@@ -121,6 +134,8 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value contains a list of [items] in any order
+  /// ignoring case sensitivity.
   void shouldContainAllIgnoringCase(Iterable<String> items) {
     expect(
       toLowerCase().split(''),
@@ -129,6 +144,8 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value contains a list of [items] in relative order
+  /// with case sensitivity.
   void shouldContainAllInOrder(List<String> items) {
     expect(
       this,
@@ -137,6 +154,8 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value contains a list of [items] in relative order
+  /// ignoring case sensitivity.
   void shouldContainAllInOrderIgnoringCase(List<String> items) {
     expect(
       toLowerCase(),
@@ -145,6 +164,8 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value matches the regular expression given by [regExp].
+  /// [regExp] can be a [RegExp] instance or a [String].
   void shouldMatch(dynamic regExp) {
     expect(
       this,
@@ -153,6 +174,9 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value does not match the regular expression \
+  /// given by [regExp].
+  /// [regExp] can be a [RegExp] instance or a [String].
   void shouldNotMatch(dynamic regExp) {
     expect(
       this,
@@ -161,6 +185,7 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value is empty.
   void shouldBeEmpty() {
     expect(
       this.isEmpty,
@@ -169,6 +194,7 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value is not empty.
   void shouldNotBeEmpty() {
     expect(
       this.isNotEmpty,
@@ -177,6 +203,7 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value is blank.
   void shouldBeBlank() {
     expect(
       trim().isEmpty,
@@ -185,6 +212,7 @@ extension StringAssertions on String {
     );
   }
 
+  /// Asserts that the value is not blank.
   void shouldNotBeBlank() {
     expect(
       trim().isNotEmpty,
@@ -195,6 +223,7 @@ extension StringAssertions on String {
 }
 
 extension StringNullableAssertions on String? {
+  /// Asserts that the value is null or empty.
   void shouldBeNullOrEmpty() {
     expect(
       this?.isEmpty ?? true,
@@ -203,6 +232,7 @@ extension StringNullableAssertions on String? {
     );
   }
 
+  /// Asserts that the value is not null nor empty.
   void shouldNotBeNullOrEmpty() {
     expect(
       this?.isNotEmpty ?? false,
@@ -211,6 +241,7 @@ extension StringNullableAssertions on String? {
     );
   }
 
+  /// Asserts that the value is null or blank.
   void shouldBeNullOrBlank() {
     expect(
       this?.trim().isEmpty ?? true,
@@ -219,6 +250,7 @@ extension StringNullableAssertions on String? {
     );
   }
 
+  /// Asserts that the value is not null nor blank.
   void shouldNotBeNullOrBlank() {
     expect(
       this?.trim().isNotEmpty ?? false,

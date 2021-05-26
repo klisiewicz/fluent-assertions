@@ -124,8 +124,8 @@ hasChildren.shouldNotBeTrue();
 ```
 
 ```dart
-'I love Flutter'.shouldEndWithIgnoringCase('Flutter');
-'I love Flutter'.shouldNotEndWithIgnoringCase('Xamarin');
+'I love Flutter'.shouldEndWithIgnoringCase('flutter');
+'I love Flutter'.shouldNotEndWithIgnoringCase('xamarin');
 ```
 
 ```dart

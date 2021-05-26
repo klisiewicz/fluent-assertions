@@ -4,26 +4,6 @@ import 'package:test/test.dart';
 import 'matchers.dart';
 
 void main() {
-  group('should be equal to', () {
-    test('should return normally when equal', () {
-      expect(() => 'name'.shouldBeEqualTo('name'), returnsNormally);
-    });
-
-    test('should fail when not equal', () {
-      expect(() => 'name'.shouldBeEqualTo('abc'), failsTest);
-    });
-  });
-
-  group('should not be equal to', () {
-    test('should fail when equal', () {
-      expect(() => 'name'.shouldNotBeEqualTo('name'), failsTest);
-    });
-
-    test('should fail when not equal', () {
-      expect(() => 'name'.shouldNotBeEqualTo('abc'), returnsNormally);
-    });
-  });
-
   group('should be equal to ignoring case', () {
     test('should return normally when equal with same case', () {
       expect(() => 'name'.shouldBeEqualToIgnoringCase('name'), returnsNormally);
@@ -67,11 +47,11 @@ void main() {
     });
 
     test('should fail when does not start with', () {
-      expect(() => 'name'.shouldBeEqualTo('a'), failsTest);
+      expect(() => 'name'.shouldStartWith('a'), failsTest);
     });
 
     test('should fail when starts with different case', () {
-      expect(() => 'name'.shouldBeEqualTo('N'), failsTest);
+      expect(() => 'name'.shouldStartWith('N'), failsTest);
     });
   });
 
