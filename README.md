@@ -128,6 +128,16 @@ hasChildren.shouldNotBeTrue();
 'I love Flutter'.shouldNotEndWithIgnoringCase('Xamarin');
 ```
 
+```dart
+'I love Flutter'.shouldContain('love');
+'I love Flutter'.shouldNotContain('hate');
+```
+
+```dart
+'I love Flutter'.shouldContainIgnoringCase('LOVE');
+'I love Flutter'.shouldNotContainIgnoringCase('HATE');
+```
+
 #### Collection Assertions
 
 ## Features and bugs

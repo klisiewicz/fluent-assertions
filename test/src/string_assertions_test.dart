@@ -145,20 +145,6 @@ void main() {
     });
   });
 
-  group('should end with ignoring case', () {
-    test('should return normally when ends with same case', () {
-      expect(() => 'name'.shouldEndWithIgnoringCase('me'), returnsNormally);
-    });
-
-    test('should return normally when ends with different case', () {
-      expect(() => 'name'.shouldEndWithIgnoringCase('ME'), returnsNormally);
-    });
-
-    test('should fail when does not end with', () {
-      expect(() => 'name'.shouldEndWithIgnoringCase('ee'), failsTest);
-    });
-  });
-
   group('should not end with', () {
     test('should fail when ends with same case', () {
       expect(() => 'name'.shouldNotEndWithIgnoringCase('me'), failsTest);
@@ -173,12 +159,44 @@ void main() {
     });
   });
 
-  group('should contain', () {
-    test('should return normally when contains', () {
-      expect(() => 'name'.shouldContain('am'), returnsNormally);
+  group('should end with ignoring case', () {
+    test('should return normally when ends with same case', () {
+      expect(() => 'name'.shouldEndWithIgnoringCase('me'), returnsNormally);
+    });
+
+    test('should return normally when ends with different case', () {
+      expect(() => 'name'.shouldEndWithIgnoringCase('ME'), returnsNormally);
     });
 
     test('should fail when does not end with', () {
+      expect(() => 'name'.shouldEndWithIgnoringCase('ee'), failsTest);
+    });
+  });
+
+  group('should not end with ignoring case', () {
+    test('should fail when ends with same case', () {
+      expect(() => 'name'.shouldNotEndWithIgnoringCase('me'), failsTest);
+    });
+
+    test('should fail when ends with different case', () {
+      expect(() => 'name'.shouldNotEndWithIgnoringCase('ME'), failsTest);
+    });
+
+    test('should return normally when does not end with', () {
+      expect(() => 'name'.shouldNotEndWithIgnoringCase('ee'), returnsNormally);
+    });
+  });
+
+  group('should contain', () {
+    test('should return normally when contains the same case', () {
+      expect(() => 'name'.shouldContain('am'), returnsNormally);
+    });
+
+    test('should fail when contains the different case', () {
+      expect(() => 'name'.shouldContain('AM'), failsTest);
+    });
+
+    test('should fail when does not contain', () {
       expect(() => 'name'.shouldContain('aa'), failsTest);
     });
   });
@@ -190,6 +208,34 @@ void main() {
 
     test('should return normally when does not contain', () {
       expect(() => 'name'.shouldNotContain('aa'), returnsNormally);
+    });
+  });
+
+  group('should contain ignoring case', () {
+    test('should return normally when contains the same case', () {
+      expect(() => 'name'.shouldContainIgnoringCase('am'), returnsNormally);
+    });
+
+    test('should return normally when contains the different case', () {
+      expect(() => 'name'.shouldContainIgnoringCase('AM'), returnsNormally);
+    });
+
+    test('should fail when does not contain', () {
+      expect(() => 'name'.shouldContainIgnoringCase('aa'), failsTest);
+    });
+  });
+
+  group('should not contain ignoring case', () {
+    test('should fail when contains the same case', () {
+      expect(() => 'name'.shouldNotContainIgnoringCase('am'), failsTest);
+    });
+
+    test('should fail when contains the different case', () {
+      expect(() => 'name'.shouldNotContainIgnoringCase('AM'), failsTest);
+    });
+
+    test('should return normally when does not contain', () {
+      expect(() => 'name'.shouldNotContainIgnoringCase('aa'), returnsNormally);
     });
   });
 
