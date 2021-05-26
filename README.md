@@ -153,6 +153,26 @@ hasChildren.shouldNotBeTrue();
 'Hello'.shouldNotMatch(r'\d');
 ```
 
+```dart
+''.shouldBeEmpty()
+'name'.shouldNotBeEmpty()
+```
+
+```dart
+''.shouldBeNullOrEmpty()
+'name'.shouldNotBeNullOrEmpty()
+```
+
+```dart
+' '.shouldBeBlank()
+'name'.shouldNotBeBlank()
+```
+
+```dart
+' '.shouldBeNullOrBlank()
+'name'.shouldNotBeNullOrBlank()
+```
+
 #### Collection Assertions
 
 ## Features and bugs
