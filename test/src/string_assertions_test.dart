@@ -359,10 +359,12 @@ void main() {
   group('should match', () {
     test('should return normally when matches reg exp', () {
       expect(() => 'name'.shouldMatch(RegExp(r"(\w+)")), returnsNormally);
+      expect(() => 'name'.shouldMatch(r"(\w+)"), returnsNormally);
     });
 
     test('should fail when does not match reg exp', () {
       expect(() => 'name'.shouldMatch(RegExp(r"(\d+)")), failsTest);
+      expect(() => 'name'.shouldMatch(r"(\d+)"), failsTest);
     });
   });
 

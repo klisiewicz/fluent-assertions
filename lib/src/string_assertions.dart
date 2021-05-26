@@ -137,19 +137,19 @@ extension StringAssertions on String {
     );
   }
 
-  void shouldMatch(RegExp regExp) {
+  void shouldMatch(dynamic regExp) {
     expect(
-      regExp.hasMatch(this),
-      isTrue,
-      reason: 'Expected $this to match ${regExp.pattern}',
+      this,
+      matches(regExp),
+      reason: 'Expected $this to match $regExp',
     );
   }
 
-  void shouldNotMatch(RegExp regExp) {
+  void shouldNotMatch(dynamic regExp) {
     expect(
-      regExp.hasMatch(this),
-      isFalse,
-      reason: 'Expected $this to not to match ${regExp.pattern}',
+      this,
+      isNot(matches(regExp)),
+      reason: 'Expected $this to not to match $regExp',
     );
   }
 
