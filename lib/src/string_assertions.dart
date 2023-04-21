@@ -166,7 +166,7 @@ extension StringAssertions on String {
 
   /// Asserts that the value matches the regular expression given by [regExp].
   /// [regExp] can be a [RegExp] instance or a [String].
-  void shouldMatch(dynamic regExp) {
+  void shouldMatch(Pattern regExp) {
     expect(
       this,
       matches(regExp),
@@ -177,7 +177,7 @@ extension StringAssertions on String {
   /// Asserts that the value does not match the regular expression \
   /// given by [regExp].
   /// [regExp] can be a [RegExp] instance or a [String].
-  void shouldNotMatch(dynamic regExp) {
+  void shouldNotMatch(Pattern regExp) {
     expect(
       this,
       isNot(matches(regExp)),
