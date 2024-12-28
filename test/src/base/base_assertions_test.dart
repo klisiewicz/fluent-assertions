@@ -1,8 +1,8 @@
 import 'package:fluent_assertions/fluent_assertions.dart';
 import 'package:test/test.dart';
 
-import 'matchers.dart';
-import 'person.dart';
+import '../util/matchers.dart';
+import '../util/person.dart';
 
 void main() {
   group('equality', () {

@@ -1,7 +1,7 @@
-import 'package:fluent_assertions/src/string_assertions.dart';
+import 'package:fluent_assertions/src/string/string_assertions.dart';
 import 'package:test/test.dart';
 
-import 'matchers.dart';
+import '../util/matchers.dart';
 
 void main() {
   group('should be equal to ignoring case', () {

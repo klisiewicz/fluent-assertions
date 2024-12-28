@@ -1,7 +1,7 @@
 import 'package:fluent_assertions/fluent_assertions.dart';
 import 'package:test/test.dart';
 
-import 'matchers.dart';
+import '../util/matchers.dart';
 
 void main() {
   const positiveNumberCloseToZero = 0.00000000000000001;
