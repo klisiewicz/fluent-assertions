@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+* Iterable assertions.
+
 ## 0.4.0
 
 * Added assertions for strings.

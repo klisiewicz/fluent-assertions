@@ -1,8 +1,8 @@
-import 'package:fluent_assertions/src/iterable_assertions.dart';
+import 'package:fluent_assertions/src/iterable/iterable_assertions.dart';
 import 'package:test/test.dart';
 
-import 'matchers.dart';
-import 'person.dart';
+import '../util/matchers.dart';
+import '../util/person.dart';
 
 void main() {
   group('strings', () {
@@ -25,6 +25,46 @@ void main() {
 
       test('should fail when contains', () {
         expect(() => capitals.shouldNotContain('Berlin'), failsTest);
+      });
+    });
+
+    group('should contain ignoring case', () {
+      test('should return normally when contains with same case', () {
+        expect(
+          () => capitals.shouldContainIgnoringCase('Berlin'),
+          returnsNormally,
+        );
+      });
+
+      test('should return normally when contains with same case', () {
+        expect(
+          () => capitals.shouldContainIgnoringCase('BERLIN'),
+          returnsNormally,
+        );
+        expect(
+          () => capitals.shouldContainIgnoringCase('berlin'),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when not contains', () {
+        expect(() => capitals.shouldContain('Munich'), failsTest);
+      });
+    });
+
+    group('should not contain ignoring case', () {
+      test('should return normally when not contains', () {
+        expect(
+          () => capitals.shouldNotContainIgnoringCase('MUNICH'),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when contains', () {
+        expect(
+          () => capitals.shouldNotContainIgnoringCase('berlin'),
+          failsTest,
+        );
       });
     });
   });

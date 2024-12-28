@@ -4,5 +4,6 @@
 library fluent_assertions;
 
 export 'src/base/base_assertions.dart';
+export 'src/iterable/iterable_assertions.dart';
 export 'src/numerical/numerical_assertions.dart';
 export 'src/string/string_assertions.dart';

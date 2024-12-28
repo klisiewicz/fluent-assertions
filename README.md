@@ -173,7 +173,7 @@ hasChildren.shouldNotBeTrue();
 'name'.shouldNotBeNullOrBlank()
 ```
 
-#### Collection Assertions
+#### Iterable Assertions
 
 ## Features and bugs
 
