@@ -106,6 +106,73 @@ class _ContainsIgnoringCase extends Matcher {
   }
 }
 
+Matcher containsAny(
+  Iterable expectedElements, {
+  bool caseSensitive = true,
+}) {
+  return _ContainsAny(expectedElements, caseSensitive: caseSensitive);
+}
+
+class _ContainsAny extends Matcher {
+  final Iterable _expectedElements;
+  final bool _caseSensitive;
+
+  _ContainsAny(
+    Iterable expectedElements, {
+    bool caseSensitive = true,
+  })  : _expectedElements = expectedElements,
+        _caseSensitive = caseSensitive;
+
+  @override
+  bool matches(Object? item, Map matchState) {
+    if (item is Iterable) {
+      for (final expected in _expectedElements) {
+        for (final element in item) {
+          if (_caseSensitive) {
+            if (expected == element) {
+              return true;
+            }
+          } else {
+            if (expected is String &&
+                element is String &&
+                expected.toLowerCase() == element.toLowerCase()) {
+              return true;
+            }
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  @override
+  Description describe(Description description) {
+    description
+        .add('contains any of ')
+        .addDescriptionOf(_expectedElements);
+    if (!_caseSensitive) {
+      description.add(' (case-insensitive)');
+    }
+    return description;
+  }
+
+  @override
+  Description describeMismatch(
+    Object? item,
+    Description mismatchDescription,
+    Map matchState,
+    bool verbose,
+  ) {
+    mismatchDescription
+        .add('did not contain any of ')
+        .addDescriptionOf(_expectedElements);
+    if (!_caseSensitive) {
+      mismatchDescription.add(' (case-insensitive)');
+    }
+    return mismatchDescription;
+  }
+}
+
 extension on RegExp {
   RegExp caseInsensitive() {
     return RegExp(

@@ -28,6 +28,38 @@ void main() {
       });
     });
 
+    group('should contain any', () {
+      test('should return normally when contains at least one element', () {
+        expect(
+          () => capitals.shouldContainAny(['Berlin', 'Paris']),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when not contains any element', () {
+        expect(
+          () => capitals.shouldContainAny(['Munich']),
+          failsTest,
+        );
+      });
+    });
+
+    group('should contain none', () {
+      test('should return normally when not contain any element', () {
+        expect(
+          () => capitals.shouldContainNone(['Munich', 'Paris']),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when contains an element', () {
+        expect(
+          () => capitals.shouldContainNone(['Munich', 'Rome', 'Warsaw']),
+          failsTest,
+        );
+      });
+    });
+
     group('should contain ignoring case', () {
       test('should return normally when contains with same case', () {
         expect(
@@ -91,11 +123,44 @@ void main() {
         expect(() => primes.shouldNotContain(2), failsTest);
       });
     });
+
+    group('should contain any', () {
+      test('should return normally when contains at least one element', () {
+        expect(
+          () => primes.shouldContainAny([1, 2]),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when not contains any element', () {
+        expect(
+          () => primes.shouldContainAny([1, 4]),
+          failsTest,
+        );
+      });
+    });
+
+    group('should contain none', () {
+      test('should return normally when not contain any element', () {
+        expect(
+          () => primes.shouldContainNone([0, 1, 4]),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when contains an element', () {
+        expect(
+          () => primes.shouldContainNone([0, 1, 2]),
+          failsTest,
+        );
+      });
+    });
   });
 
   group('objects', () {
     const alice = Person(name: 'Alice');
     const bob = Person(name: 'Bob');
+    const jimmy = Person(name: 'Jimmy');
 
     group('should contain', () {
       test('should return normally when contains', () {
@@ -114,6 +179,38 @@ void main() {
 
       test('should fail when contains', () {
         expect(() => [alice, bob].shouldNotContain(bob), failsTest);
+      });
+    });
+
+    group('should contain any', () {
+      test('should return normally when contains at least one element', () {
+        expect(
+          () => [alice, bob].shouldContainAny([alice, jimmy]),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when not contains any element', () {
+        expect(
+          () => [alice, bob].shouldContainAny([jimmy]),
+          failsTest,
+        );
+      });
+    });
+
+    group('should contain none', () {
+      test('should return normally when not contain any element', () {
+        expect(
+          () => [alice, bob].shouldContainNone([jimmy]),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when contains an element', () {
+        expect(
+          () => [alice, bob].shouldContainNone([bob, jimmy]),
+          failsTest,
+        );
       });
     });
   });
