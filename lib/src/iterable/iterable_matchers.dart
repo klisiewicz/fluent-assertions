@@ -66,8 +66,12 @@ class _ContainsIgnoringCase extends Matcher {
   }
 
   @override
-  Description describeMismatch(Object? item, Description mismatchDescription,
-      Map matchState, bool verbose) {
+  Description describeMismatch(
+    Object? item,
+    Description mismatchDescription,
+    Map matchState,
+    bool verbose,
+  ) {
     if (item is String || item is Iterable || item is Map) {
       super.describeMismatch(item, mismatchDescription, matchState, verbose);
       if (item is String) {
