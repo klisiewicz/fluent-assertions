@@ -83,4 +83,25 @@ extension IterableStringAssertions on Iterable<String> {
           'Expected no elements from $expected to be present in $this ignoring case',
     );
   }
+
+  /// Asserts that [Iterable] contains an element matching every value in
+  /// [expected] in any order, case-insensitively, and may contain additional
+  /// values.
+  void shouldContainAllIgnoringCase(Iterable<String> expected) {
+    expect(
+      this,
+      containsAll(expected.map((e) => equalsIgnoringCase(e))),
+      reason:
+          'Expected all elements from $expected to be present in $this in any order and ignoring case',
+    );
+  }
+
+  void shouldContainAllInOrderIgnoringCase(Iterable<String> expected) {
+    expect(
+      this,
+      containsAllInOrder(expected.map((e) => equalsIgnoringCase(e))),
+      reason:
+          'Expected all elements from $expected to be present in $this in order and ignoring case',
+    );
+  }
 }

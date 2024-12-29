@@ -219,6 +219,82 @@ void main() {
         );
       });
     });
+
+    group('should contain all ignoring case', () {
+      test('should return normally when contains all in order', () {
+        expect(
+          () => capitals.shouldContainAllIgnoringCase(['BERLIN']),
+          returnsNormally,
+        );
+        expect(
+          () => capitals.shouldContainAllIgnoringCase(['BERLIN', 'warsaw']),
+          returnsNormally,
+        );
+      });
+
+      test('should return normally when contains all in any order', () {
+        expect(
+          () => capitals.shouldContainAllIgnoringCase(['warsaw']),
+          returnsNormally,
+        );
+        expect(
+          () => capitals.shouldContainAllIgnoringCase(['warsaw', 'BERLIN']),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when not contain all', () {
+        expect(
+          () => capitals.shouldContainAllIgnoringCase(['Barcelona']),
+          failsTest,
+        );
+        expect(
+          () => capitals.shouldContainAllIgnoringCase(['Berlin, Barcelona']),
+          failsTest,
+        );
+      });
+    });
+
+    group('should contain all in order ignoring case', () {
+      test('should return normally when contains all in order', () {
+        expect(
+          () => capitals.shouldContainAllInOrderIgnoringCase(
+            ['BERLIN'],
+          ),
+          returnsNormally,
+        );
+        expect(
+          () => capitals.shouldContainAllInOrderIgnoringCase(
+            ['BERLIN', 'warsaw'],
+          ),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when contains all not in order', () {
+        expect(
+          () => capitals.shouldContainAllInOrderIgnoringCase(
+            ['warsaw', 'BERLIN'],
+          ),
+          failsTest,
+        );
+      });
+
+      test('should fail when not contain all', () {
+        expect(
+          () => capitals.shouldContainAllInOrderIgnoringCase(
+            ['Barcelona'],
+          ),
+          failsTest,
+        );
+        expect(
+          () => capitals.shouldContainAllInOrderIgnoringCase(
+            ['BERLIN, Barcelona'],
+          ),
+          failsTest,
+        );
+      });
+    });
   });
 
   group('numbers', () {
