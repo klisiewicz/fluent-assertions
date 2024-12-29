@@ -46,17 +46,25 @@ extension IterableAssertions<T> on Iterable<T> {
 }
 
 extension IterableStringAssertions on Iterable<String> {
-  /// Asserts that [Iterable] contains [expected] ignoring case sensitivity.
-  void shouldContainIgnoringCase(String? expected) {
-    expect(this, containsIgnoringCase(expected));
+  /// Asserts that [Iterable] contains [expected] case-insensitively.
+  void shouldContainIgnoringCase(String expected) {
+    expect(
+      this,
+      containsAll([equalsIgnoringCase(expected)]),
+      reason: 'Expected "$this" to contain "$expected" ignoring case',
+    );
   }
 
-  /// Asserts that [Iterable] contains [expected] ignoring case sensitivity.
-  void shouldNotContainIgnoringCase(String? expected) {
-    expect(this, isNot(containsIgnoringCase(expected)));
+  /// Asserts that [Iterable] contains [expected] case-insensitively.
+  void shouldNotContainIgnoringCase(String expected) {
+    expect(
+      this,
+      isNot(containsAll([equalsIgnoringCase(expected)])),
+      reason: 'Expected "$this" not to contain "$expected" ignoring case',
+    );
   }
 
-  /// Asserts that [Iterable] contains any of [expected] ignoring case sensitivity.
+  /// Asserts that [Iterable] contains any of [expected] case-insensitively.
   void shouldContainAnyIgnoringCase(Iterable<String> expected) {
     expect(
       this,
@@ -66,7 +74,7 @@ extension IterableStringAssertions on Iterable<String> {
     );
   }
 
-  /// Asserts that [Iterable] contains none of [expected] ignoring case sensitivity.
+  /// Asserts that [Iterable] contains none of [expected] case-insensitively.
   void shouldContainNoneIgnoringCase(Iterable<String> expected) {
     expect(
       this,
