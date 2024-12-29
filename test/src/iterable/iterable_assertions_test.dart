@@ -14,7 +14,7 @@ void main() {
       });
 
       test('should fail when not contains', () {
-        expect(() => capitals.shouldContain('Munich'), failsTest);
+        expect(() => capitals.shouldContain('Barcelona'), failsTest);
       });
 
       test('should fail when contains with different case', () {
@@ -24,7 +24,7 @@ void main() {
 
     group('should not contain', () {
       test('should return normally when not contains', () {
-        expect(() => capitals.shouldNotContain('Munich'), returnsNormally);
+        expect(() => capitals.shouldNotContain('Barcelona'), returnsNormally);
       });
 
       test('should fail when contains', () {
@@ -39,7 +39,7 @@ void main() {
     group('should contain any', () {
       test('should return normally when contains at least one element', () {
         expect(
-          () => capitals.shouldContainAny(['Berlin', 'Paris']),
+          () => capitals.shouldContainAny(['Berlin', 'Barcelona']),
           returnsNormally,
         );
       });
@@ -53,7 +53,7 @@ void main() {
 
       test('should fail when not contains any element', () {
         expect(
-          () => capitals.shouldContainAny(['Munich']),
+          () => capitals.shouldContainAny(['Barcelona']),
           failsTest,
         );
       });
@@ -62,14 +62,14 @@ void main() {
     group('should contain any ignoring case', () {
       test('should return normally when contains at least one element', () {
         expect(
-          () => capitals.shouldContainAnyIgnoringCase(['BERLIN', 'Paris']),
+          () => capitals.shouldContainAnyIgnoringCase(['BERLIN', 'Barcelona']),
           returnsNormally,
         );
       });
 
       test('should fail when not contains any element', () {
         expect(
-          () => capitals.shouldContainAny(['Munich']),
+          () => capitals.shouldContainAny(['Barcelona']),
           failsTest,
         );
       });
@@ -78,7 +78,7 @@ void main() {
     group('should contain none', () {
       test('should return normally when not contain any element', () {
         expect(
-          () => capitals.shouldContainNone(['Munich', 'Paris']),
+          () => capitals.shouldContainNone(['Barcelona', 'Porto']),
           returnsNormally,
         );
       });
@@ -92,7 +92,7 @@ void main() {
 
       test('should fail when contains an element', () {
         expect(
-          () => capitals.shouldContainNone(['Munich', 'Rome', 'Warsaw']),
+          () => capitals.shouldContainNone(['Barcelona', 'Porto', 'Warsaw']),
           failsTest,
         );
       });
@@ -101,14 +101,14 @@ void main() {
     group('should contain none ignoring case', () {
       test('should return normally when not contain any element', () {
         expect(
-          () => capitals.shouldContainNoneIgnoringCase(['Rome', 'Paris']),
+          () => capitals.shouldContainNoneIgnoringCase(['Porto', 'Barcelona']),
           returnsNormally,
         );
       });
 
       test('should fail when contains an element', () {
         expect(
-          () => capitals.shouldContainNoneIgnoringCase(['Rome', 'WARSAW']),
+          () => capitals.shouldContainNoneIgnoringCase(['Porto', 'WARSAW']),
           failsTest,
         );
       });
@@ -134,14 +134,14 @@ void main() {
       });
 
       test('should fail when not contains', () {
-        expect(() => capitals.shouldContain('Munich'), failsTest);
+        expect(() => capitals.shouldContain('Barcelona'), failsTest);
       });
     });
 
     group('should not contain ignoring case', () {
       test('should return normally when not contains', () {
         expect(
-          () => capitals.shouldNotContainIgnoringCase('MUNICH'),
+          () => capitals.shouldNotContainIgnoringCase('Barcelona'),
           returnsNormally,
         );
       });
@@ -179,11 +179,11 @@ void main() {
 
       test('should fail when not contain all', () {
         expect(
-          () => capitals.shouldContainAll(['Paris']),
+          () => capitals.shouldContainAll(['Barcelona']),
           failsTest,
         );
         expect(
-          () => capitals.shouldContainAll(['Berlin, Paris']),
+          () => capitals.shouldContainAll(['Berlin, Barcelona']),
           failsTest,
         );
       });
