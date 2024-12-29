@@ -3,6 +3,26 @@ import 'package:test/test.dart' as test show predicate;
 import 'package:test/test.dart';
 
 extension IterableAssertions<T> on Iterable<T> {
+  /// Asserts that [Iterable] has [expectedSize] elements
+  void shouldHaveSize(int expectedSize) {
+    expect(this, hasLength(expectedSize));
+  }
+
+  /// Asserts that [Iterable] is empty.
+  void shouldBeEmpty() {
+    expect(this, isEmpty);
+  }
+
+  /// Asserts that [Iterable] is not empty.
+  void shouldNotBeEmpty() {
+    expect(this, isNot(isEmpty));
+  }
+
+  /// Asserts that [Iterable] has 1 element.
+  void shouldHaveSingleItem() {
+    expect(this, hasLength(1));
+  }
+
   /// Asserts that [Iterable] contains [expected].
   void shouldContain(T? expected) {
     expect(this, contains(expected));

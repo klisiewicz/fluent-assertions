@@ -220,7 +220,9 @@ void main() {
       });
 
       group('should contain any that', () {
-        test('should return normally when at least one element matches the predicate', () {
+        test(
+            'should return normally when at least one element matches the predicate',
+            () {
           expect(
             () => capitals.shouldContainAnyThat((c) => c.contains('saw')),
             returnsNormally,
