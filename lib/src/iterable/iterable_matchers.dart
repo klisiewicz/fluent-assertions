@@ -147,9 +147,7 @@ class _ContainsAny extends Matcher {
 
   @override
   Description describe(Description description) {
-    description
-        .add('contains any of ')
-        .addDescriptionOf(_expectedElements);
+    description.add('contains any of ').addDescriptionOf(_expectedElements);
     if (!_caseSensitive) {
       description.add(' (case-insensitive)');
     }
