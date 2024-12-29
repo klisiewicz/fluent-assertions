@@ -153,6 +153,41 @@ void main() {
         );
       });
     });
+
+    group('should contain all', () {
+      test('should return normally when contains all in order', () {
+        expect(
+          () => capitals.shouldContainAll(['Berlin']),
+          returnsNormally,
+        );
+        expect(
+          () => capitals.shouldContainAll(['Berlin', 'Warsaw']),
+          returnsNormally,
+        );
+      });
+
+      test('should return normally when contains all in any order', () {
+        expect(
+          () => capitals.shouldContainAll(['Warsaw']),
+          returnsNormally,
+        );
+        expect(
+          () => capitals.shouldContainAll(['Warsaw', 'Berlin']),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when not contain all', () {
+        expect(
+          () => capitals.shouldContainAll(['Paris']),
+          failsTest,
+        );
+        expect(
+          () => capitals.shouldContainAll(['Berlin, Paris']),
+          failsTest,
+        );
+      });
+    });
   });
 
   group('numbers', () {
@@ -205,6 +240,41 @@ void main() {
       test('should fail when contains an element', () {
         expect(
           () => primes.shouldContainNone([0, 1, 2]),
+          failsTest,
+        );
+      });
+    });
+
+    group('should contain all', () {
+      test('should return normally when contains all in order', () {
+        expect(
+          () => primes.shouldContainAll([2]),
+          returnsNormally,
+        );
+        expect(
+          () => primes.shouldContainAll([2, 3]),
+          returnsNormally,
+        );
+      });
+
+      test('should return normally when contains all in any order', () {
+        expect(
+          () => primes.shouldContainAll([7]),
+          returnsNormally,
+        );
+        expect(
+          () => primes.shouldContainAll([5, 2, 7]),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when not contain all', () {
+        expect(
+          () => primes.shouldContainAll([1]),
+          failsTest,
+        );
+        expect(
+          () => primes.shouldContainAll([3, 2, 1]),
           failsTest,
         );
       });
@@ -278,6 +348,41 @@ void main() {
         expect(
           () => [alice, bob].shouldContainNone([]),
           returnsNormally,
+        );
+      });
+    });
+
+    group('should contain all', () {
+      test('should return normally when contains all in order', () {
+        expect(
+          () => [alice, bob].shouldContainAll([alice]),
+          returnsNormally,
+        );
+        expect(
+          () => [alice, bob].shouldContainAll([alice, bob]),
+          returnsNormally,
+        );
+      });
+
+      test('should return normally when contains all in any order', () {
+        expect(
+          () => [alice, bob].shouldContainAll([bob]),
+          returnsNormally,
+        );
+        expect(
+          () => [alice, bob].shouldContainAll([bob, alice]),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when not contain all', () {
+        expect(
+          () => [alice, bob].shouldContainAll([jimmy]),
+          failsTest,
+        );
+        expect(
+          () => [alice, bob].shouldContainAll([alice, bob, jimmy]),
+          failsTest,
         );
       });
     });

@@ -21,6 +21,12 @@ extension IterableAssertions<T> on Iterable<T> {
   void shouldContainNone(Iterable<T> expected) {
     expect(this, isNot(containsAny(expected)));
   }
+
+  /// Asserts that [Iterable] contains an element matching every value in
+  /// [expected] in any order, and may contain additional values.
+  void shouldContainAll(Iterable<T> expected) {
+    expect(this, containsAll(expected));
+  }
 }
 
 extension IterableStringAssertions on Iterable<String> {
