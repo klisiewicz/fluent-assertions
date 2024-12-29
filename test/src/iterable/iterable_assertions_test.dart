@@ -224,7 +224,7 @@ void main() {
             'should return normally when at least one element matches the predicate',
             () {
           expect(
-            () => capitals.shouldContainAnyThat((c) => c.contains('saw')),
+            () => capitals.shouldContainAnyThat((c) => c.startsWith('War')),
             returnsNormally,
           );
         });
@@ -235,6 +235,29 @@ void main() {
             failsTest,
           );
         });
+      });
+    });
+
+    group('should contain none that', () {
+      test('should return normally when no elements match the predicate', () {
+        expect(
+          () => capitals.shouldContainNoneThat((c) => c.contains('ro')),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when some elements matches the predicate', () {
+        expect(
+          () => capitals.shouldContainNoneThat((c) => c.startsWith('War')),
+          failsTest,
+        );
+      });
+
+      test('should fail when all elements match the predicate', () {
+        expect(
+          () => capitals.shouldContainNoneThat((c) => c.isNotEmpty),
+          failsTest,
+        );
       });
     });
 
@@ -416,10 +439,33 @@ void main() {
 
         test('should fail when no element matches the predicate', () {
           expect(
-            () => primes.shouldContainAnyThat((e) => e < 0),
+            () => primes.shouldContainAnyThat((p) => p < 0),
             failsTest,
           );
         });
+      });
+    });
+
+    group('should contain none that', () {
+      test('should return normally when no elements match the predicate', () {
+        expect(
+          () => primes.shouldContainNoneThat((p) => p <= 0),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when some elements matches the predicate', () {
+        expect(
+          () => primes.shouldContainNoneThat((p) => p <= 2),
+          failsTest,
+        );
+      });
+
+      test('should fail when all elements match the predicate', () {
+        expect(
+          () => primes.shouldContainNoneThat((p) => p >= 0),
+          failsTest,
+        );
       });
     });
 
@@ -605,6 +651,52 @@ void main() {
       test('should fail when no element matches the predicate', () {
         expect(
           () => [alice, bob].shouldContainAnyThat((p) => p.name.contains('x')),
+          failsTest,
+        );
+      });
+    });
+
+    group('should contain all that', () {
+      test('should return normally when all elements match the predicate', () {
+        expect(
+          () => [alice, bob].shouldContainAllThat((p) => p.name.isNotEmpty),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when some elements matches the predicate', () {
+        expect(
+          () => [alice, bob].shouldContainAllThat((p) => p.name.contains('o')),
+          failsTest,
+        );
+      });
+
+      test('should fail when no elements matches the predicate', () {
+        expect(
+          () => [alice, bob].shouldContainAllThat((p) => p.name.contains('x')),
+          failsTest,
+        );
+      });
+    });
+
+    group('should contain none that', () {
+      test('should return normally when no elements match the predicate', () {
+        expect(
+          () => [alice, bob].shouldContainNoneThat((p) => p.name.isEmpty),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when some elements matches the predicate', () {
+        expect(
+          () => [alice, bob].shouldContainNoneThat((p) => p.name.contains('o')),
+          failsTest,
+        );
+      });
+
+      test('should fail when all elements match the predicate', () {
+        expect(
+          () => [alice, bob].shouldContainNoneThat((p) => p.name.isNotEmpty),
           failsTest,
         );
       });

@@ -67,10 +67,17 @@ extension IterableAssertions<T> on Iterable<T> {
 
   /// Asserts that [Iterable] contains an element matching the given [predicate].
   void shouldContainAnyThat(bool Function(T argument) predicate) {
-    expect(
-      this,
-      containsAny([test.predicate(predicate)]),
-    );
+    expect(this, anyElement(predicate));
+  }
+
+  /// Asserts that all [Iterable] elements match [predicate].
+  void shouldContainAllThat(bool Function(T argument) predicate) {
+    expect(this, everyElement(predicate));
+  }
+
+  /// Asserts that none [Iterable] elements match [predicate].
+  void shouldContainNoneThat(bool Function(T argument) predicate) {
+    expect(this, everyElement(isNot(predicate)));
   }
 }
 
