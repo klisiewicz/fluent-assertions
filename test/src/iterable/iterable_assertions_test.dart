@@ -218,6 +218,22 @@ void main() {
           failsTest,
         );
       });
+
+      group('should contain any that', () {
+        test('should return normally when at least one element matches the predicate', () {
+          expect(
+            () => capitals.shouldContainAnyThat((c) => c.contains('saw')),
+            returnsNormally,
+          );
+        });
+
+        test('should fail when no element matches the predicate', () {
+          expect(
+            () => capitals.shouldContainAnyThat((c) => c.length > 10),
+            failsTest,
+          );
+        });
+      });
     });
 
     group('should contain all ignoring case', () {
@@ -385,6 +401,24 @@ void main() {
           failsTest,
         );
       });
+
+      group('should contain any that', () {
+        test(
+            'should return normally when at least one element matches the predicate',
+            () {
+          expect(
+            () => primes.shouldContainAnyThat((e) => e >= 7),
+            returnsNormally,
+          );
+        });
+
+        test('should fail when no element matches the predicate', () {
+          expect(
+            () => primes.shouldContainAnyThat((e) => e < 0),
+            failsTest,
+          );
+        });
+      });
     });
 
     group('should contain all in order', () {
@@ -551,6 +585,24 @@ void main() {
         );
         expect(
           () => [alice, bob].shouldContainAllInOrder([alice, bob, jimmy]),
+          failsTest,
+        );
+      });
+    });
+
+    group('should contain any that', () {
+      test(
+          'should return normally when at least one element matches the predicate',
+          () {
+        expect(
+          () => [alice, bob].shouldContainAnyThat((p) => p.name.contains('Al')),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when no element matches the predicate', () {
+        expect(
+          () => [alice, bob].shouldContainAnyThat((p) => p.name.contains('x')),
           failsTest,
         );
       });

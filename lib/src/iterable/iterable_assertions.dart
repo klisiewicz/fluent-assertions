@@ -1,4 +1,5 @@
 import 'package:fluent_assertions/src/iterable/iterable_matchers.dart';
+import 'package:test/test.dart' as test show predicate;
 import 'package:test/test.dart';
 
 extension IterableAssertions<T> on Iterable<T> {
@@ -42,6 +43,14 @@ extension IterableAssertions<T> on Iterable<T> {
   /// interleaved throughout.
   void shouldContainAllInOrder(Iterable<T> expected) {
     expect(this, containsAllInOrder(expected));
+  }
+
+  /// Asserts that [Iterable] contains an element matching the given [predicate].
+  void shouldContainAnyThat(bool Function(T argument) predicate) {
+    expect(
+      this,
+      containsAny([test.predicate(predicate)]),
+    );
   }
 }
 
@@ -96,6 +105,9 @@ extension IterableStringAssertions on Iterable<String> {
     );
   }
 
+  /// Asserts that [Iterable] contains an element matching every value in
+  /// [expected] in the same order and case-insensitively but may contain
+  /// additional values interleaved throughout.
   void shouldContainAllInOrderIgnoringCase(Iterable<String> expected) {
     expect(
       this,
