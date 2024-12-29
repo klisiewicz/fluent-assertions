@@ -16,6 +16,10 @@ void main() {
       test('should fail when not contains', () {
         expect(() => capitals.shouldContain('Munich'), failsTest);
       });
+
+      test('should fail when contains with different case', () {
+        expect(() => capitals.shouldContain('BERLIN'), failsTest);
+      });
     });
 
     group('should not contain', () {
@@ -26,6 +30,10 @@ void main() {
       test('should fail when contains', () {
         expect(() => capitals.shouldNotContain('Berlin'), failsTest);
       });
+
+      test('should return normally when contains with different case', () {
+        expect(() => capitals.shouldContain('BERLIN'), failsTest);
+      });
     });
 
     group('should contain any', () {
@@ -33,6 +41,13 @@ void main() {
         expect(
           () => capitals.shouldContainAny(['Berlin', 'Paris']),
           returnsNormally,
+        );
+      });
+
+      test('should fail when contains with different case', () {
+        expect(
+          () => capitals.shouldContainAny(['BERLIN']),
+          failsTest,
         );
       });
 
@@ -48,6 +63,13 @@ void main() {
       test('should return normally when not contain any element', () {
         expect(
           () => capitals.shouldContainNone(['Munich', 'Paris']),
+          returnsNormally,
+        );
+      });
+
+      test('should return normally when contains with different case', () {
+        expect(
+          () => capitals.shouldContainNone(['BERLIN']),
           returnsNormally,
         );
       });
@@ -196,6 +218,13 @@ void main() {
           failsTest,
         );
       });
+
+      test('should fail when expected is empty', () {
+        expect(
+          () => [alice, bob].shouldContainAny([]),
+          failsTest,
+        );
+      });
     });
 
     group('should contain none', () {
@@ -210,6 +239,13 @@ void main() {
         expect(
           () => [alice, bob].shouldContainNone([bob, jimmy]),
           failsTest,
+        );
+      });
+
+      test('should return normally when expected is empty', () {
+        expect(
+          () => [alice, bob].shouldContainNone([]),
+          returnsNormally,
         );
       });
     });
