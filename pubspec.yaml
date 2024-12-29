@@ -1,5 +1,5 @@
 name: fluent_assertions
-description: Fluent Assertions library written in Dart.
+description: A very extensive set of extension methods that allow you to more naturally specify the expected outcome of a TDD or BDD-style unit tests.
 version: 0.5.0
 homepage: https://github.com/klisiewicz/fluent-assertions
 
