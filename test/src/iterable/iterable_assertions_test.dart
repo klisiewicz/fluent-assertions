@@ -188,6 +188,37 @@ void main() {
         );
       });
     });
+
+    group('should contain all in order', () {
+      test('should return normally when contains all in order', () {
+        expect(
+          () => capitals.shouldContainAllInOrder(['Berlin']),
+          returnsNormally,
+        );
+        expect(
+          () => capitals.shouldContainAllInOrder(['Berlin', 'Warsaw']),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when contains all not in order', () {
+        expect(
+          () => capitals.shouldContainAllInOrder(['Warsaw', 'Berlin']),
+          failsTest,
+        );
+      });
+
+      test('should fail when not contain all', () {
+        expect(
+          () => capitals.shouldContainAllInOrder(['Barcelona']),
+          failsTest,
+        );
+        expect(
+          () => capitals.shouldContainAllInOrder(['Berlin, Barcelona']),
+          failsTest,
+        );
+      });
+    });
   });
 
   group('numbers', () {
@@ -275,6 +306,37 @@ void main() {
         );
         expect(
           () => primes.shouldContainAll([3, 2, 1]),
+          failsTest,
+        );
+      });
+    });
+
+    group('should contain all in order', () {
+      test('should return normally when contains all in order', () {
+        expect(
+          () => primes.shouldContainAllInOrder([2]),
+          returnsNormally,
+        );
+        expect(
+          () => primes.shouldContainAllInOrder([2, 3]),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when contains all not in order', () {
+        expect(
+          () => primes.shouldContainAllInOrder([5, 2, 7]),
+          failsTest,
+        );
+      });
+
+      test('should fail when not contain all', () {
+        expect(
+          () => primes.shouldContainAllInOrder([1]),
+          failsTest,
+        );
+        expect(
+          () => primes.shouldContainAllInOrder([3, 2, 1]),
           failsTest,
         );
       });
@@ -382,6 +444,37 @@ void main() {
         );
         expect(
           () => [alice, bob].shouldContainAll([alice, bob, jimmy]),
+          failsTest,
+        );
+      });
+    });
+
+    group('should contain all', () {
+      test('should return normally when contains all in order', () {
+        expect(
+          () => [alice, bob].shouldContainAllInOrder([alice]),
+          returnsNormally,
+        );
+        expect(
+          () => [alice, bob].shouldContainAllInOrder([alice, bob]),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when contains all not in order', () {
+        expect(
+          () => [alice, bob].shouldContainAllInOrder([bob, alice]),
+          failsTest,
+        );
+      });
+
+      test('should fail when not contain all', () {
+        expect(
+          () => [alice, bob].shouldContainAllInOrder([jimmy]),
+          failsTest,
+        );
+        expect(
+          () => [alice, bob].shouldContainAllInOrder([alice, bob, jimmy]),
           failsTest,
         );
       });
