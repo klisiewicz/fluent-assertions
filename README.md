@@ -175,6 +175,27 @@ hasChildren.shouldNotBeTrue();
 
 #### Iterable Assertions
 
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContain('Flutter')
+['Flutter', 'React Native', 'Jetpack Compose'].shouldNotContain('Vue')
+```
+
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainAny(['Flutter', 'Vue'])
+```
+
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainNone(['Angular', 'Vue'])
+```
+
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainAll(['Jetpack Compose', 'React Native'])
+```
+
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainAllInOrder(['Flutter', 'React Native'])
+```
+
 ## Features and bugs
 
 Please file feature requests and bugs at the [issue tracker](https://github.com/klisiewicz/fluent-assertions/issues).
