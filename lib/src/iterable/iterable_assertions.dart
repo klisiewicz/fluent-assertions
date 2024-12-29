@@ -14,12 +14,21 @@ extension IterableAssertions<T> on Iterable<T> {
 
   /// Asserts that [Iterable] contains any of [expected].
   void shouldContainAny(Iterable<T> expected) {
-    expect(this, containsAny(expected));
+    expect(
+      this,
+      containsAny(expected.map(equals).toList()),
+      reason:
+          'Expected at least one element from $expected to be present in $this',
+    );
   }
 
   /// Asserts that [Iterable] contains none of [expected].
   void shouldContainNone(Iterable<T> expected) {
-    expect(this, isNot(containsAny(expected)));
+    expect(
+      this,
+      isNot(containsAny(expected.map(equals).toList())),
+      reason: 'Expected no elements from $expected to be present in $this',
+    );
   }
 
   /// Asserts that [Iterable] contains an element matching every value in
@@ -49,11 +58,21 @@ extension IterableStringAssertions on Iterable<String> {
 
   /// Asserts that [Iterable] contains any of [expected] ignoring case sensitivity.
   void shouldContainAnyIgnoringCase(Iterable<String> expected) {
-    expect(this, containsAny(expected, caseSensitive: false));
+    expect(
+      this,
+      containsAny(expected.map((e) => equalsIgnoringCase(e)).toList()),
+      reason:
+          'Expected at least one element from $expected to be present in $this ignoring case',
+    );
   }
 
   /// Asserts that [Iterable] contains none of [expected] ignoring case sensitivity.
   void shouldContainNoneIgnoringCase(Iterable<String> expected) {
-    expect(this, isNot(containsAny(expected, caseSensitive: false)));
+    expect(
+      this,
+      isNot(containsAny(expected.map((e) => equalsIgnoringCase(e)).toList())),
+      reason:
+          'Expected no elements from $expected to be present in $this ignoring case',
+    );
   }
 }
