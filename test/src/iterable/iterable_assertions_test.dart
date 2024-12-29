@@ -59,6 +59,22 @@ void main() {
       });
     });
 
+    group('should contain any ignoring case', () {
+      test('should return normally when contains at least one element', () {
+        expect(
+          () => capitals.shouldContainAnyIgnoringCase(['BERLIN', 'Paris']),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when not contains any element', () {
+        expect(
+          () => capitals.shouldContainAny(['Munich']),
+          failsTest,
+        );
+      });
+    });
+
     group('should contain none', () {
       test('should return normally when not contain any element', () {
         expect(
@@ -77,6 +93,22 @@ void main() {
       test('should fail when contains an element', () {
         expect(
           () => capitals.shouldContainNone(['Munich', 'Rome', 'Warsaw']),
+          failsTest,
+        );
+      });
+    });
+
+    group('should contain none ignoring case', () {
+      test('should return normally when not contain any element', () {
+        expect(
+          () => capitals.shouldContainNoneIgnoringCase(['Rome', 'Paris']),
+          returnsNormally,
+        );
+      });
+
+      test('should fail when contains an element', () {
+        expect(
+          () => capitals.shouldContainNoneIgnoringCase(['Rome', 'WARSAW']),
           failsTest,
         );
       });

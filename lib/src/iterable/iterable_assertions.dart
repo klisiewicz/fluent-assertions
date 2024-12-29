@@ -33,4 +33,14 @@ extension IterableStringAssertions on Iterable<String> {
   void shouldNotContainIgnoringCase(String? expected) {
     expect(this, isNot(containsIgnoringCase(expected)));
   }
+
+  /// Asserts that [Iterable] contains any of [expected] ignoring case sensitivity.
+  void shouldContainAnyIgnoringCase(Iterable<String> expected) {
+    expect(this, containsAny(expected, caseSensitive: false));
+  }
+
+  /// Asserts that [Iterable] contains none of [expected] ignoring case sensitivity.
+  void shouldContainNoneIgnoringCase(Iterable<String> expected) {
+    expect(this, isNot(containsAny(expected, caseSensitive: false)));
+  }
 }
