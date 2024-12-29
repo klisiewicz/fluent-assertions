@@ -1,5 +1,4 @@
 import 'package:fluent_assertions/src/iterable/iterable_matchers.dart';
-import 'package:test/test.dart' as test show predicate;
 import 'package:test/test.dart';
 
 extension IterableAssertions<T> on Iterable<T> {
