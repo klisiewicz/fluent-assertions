@@ -1,6 +1,26 @@
 import 'package:fluent_assertions/src/iterable/iterable_matchers.dart';
 import 'package:test/test.dart';
 
+extension IterableObjectAssertions on Iterable<Object> {
+  /// Asserts that every value in [Iterable] is of type [E].
+  /// [E] - Expected type.
+  void shouldAllBeInstanceOf<E>() {
+    expect(this, everyElement((e) => e is E));
+  }
+
+  /// Asserts that any value in [Iterable] is of type [E].
+  /// [E] - Expected type.
+  void shouldAnyBeInstanceOf<E>() {
+    expect(this, anyElement((e) => e is E));
+  }
+
+  /// Asserts that every value in [Iterable] is not of type [E].
+  /// [E] - Expected type.
+  void shouldNoneBeInstanceOf<E>() {
+    expect(this, everyElement((e) => e is! E));
+  }
+}
+
 extension IterableAssertions<T> on Iterable<T> {
   /// Asserts that [Iterable] has [expectedSize] elements
   void shouldHaveSize(int expectedSize) {
