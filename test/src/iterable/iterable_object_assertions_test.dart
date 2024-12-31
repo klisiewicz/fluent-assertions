@@ -238,7 +238,8 @@ void main() {
       );
     });
 
-    test('should return normally when at least one element is not of expected type',
+    test(
+        'should return normally when at least one element is not of expected type',
         () {
       expect(
         () => [1, '2.0', 3.14].shouldAnyBeInstanceOf<double>(),
