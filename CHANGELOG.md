@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1
+
+* Downgraded test package to 1.25.7.
+
 ## 0.5.0
 
 * Iterable assertions.
