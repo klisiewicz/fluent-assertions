@@ -173,7 +173,43 @@ hasChildren.shouldNotBeTrue();
 'name'.shouldNotBeNullOrBlank()
 ```
 
-#### Collection Assertions
+#### Iterable Assertions
+
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContain('Flutter');
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainIgnoringCase('flutter');
+```
+
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldNotContain('Vue');
+['Flutter', 'React Native', 'Jetpack Compose'].shouldNotContainIgnoringCase('vue');
+```
+
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainAny(['Flutter', 'Vue']);
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainAnyIgnoringCase(['react native']);
+```
+
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainNone(['Angular', 'Vue'])
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainNoneIgnoringCase(['angular', 'vue']);
+```
+
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainAll(['Jetpack Compose', 'React Native']);
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainAllIgnoringCase(['jetpack compose', 'react native']);
+```
+
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainAllInOrder(['Flutter', 'React Native']);
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainAllInOrderIgnoringCase(['flutter', 'react native']);
+```
+
+```dart
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainAllThat((framework) => framework.startsWith(RegExp('[A-Z]')));
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainAnyThat((framework) => framework.contains('React'));
+['Flutter', 'React Native', 'Jetpack Compose'].shouldContainNoneThat((framework) => framework.isEmpty);
+```
 
 ## Features and bugs
 
