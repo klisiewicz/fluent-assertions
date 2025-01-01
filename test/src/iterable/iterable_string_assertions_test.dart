@@ -20,6 +20,30 @@ void main() {
     });
   });
 
+  group('should contain ignoring case', () {
+    test('should return normally when contains with same case', () {
+      expect(
+        () => capitals.shouldContainIgnoringCase('Berlin'),
+        returnsNormally,
+      );
+    });
+
+    test('should return normally when contains with same case', () {
+      expect(
+        () => capitals.shouldContainIgnoringCase('BERLIN'),
+        returnsNormally,
+      );
+      expect(
+        () => capitals.shouldContainIgnoringCase('berlin'),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when not contains', () {
+      expect(() => capitals.shouldContain('Barcelona'), failsTest);
+    });
+  });
+
   group('should not contain', () {
     test('should return normally when not contains', () {
       expect(() => capitals.shouldNotContain('Barcelona'), returnsNormally);
@@ -31,6 +55,22 @@ void main() {
 
     test('should return normally when contains with different case', () {
       expect(() => capitals.shouldContain('BERLIN'), failsTest);
+    });
+  });
+
+  group('should not contain ignoring case', () {
+    test('should return normally when not contains', () {
+      expect(
+        () => capitals.shouldNotContainIgnoringCase('Barcelona'),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when contains', () {
+      expect(
+        () => capitals.shouldNotContainIgnoringCase('berlin'),
+        failsTest,
+      );
     });
   });
 
@@ -112,46 +152,6 @@ void main() {
     });
   });
 
-  group('should contain ignoring case', () {
-    test('should return normally when contains with same case', () {
-      expect(
-        () => capitals.shouldContainIgnoringCase('Berlin'),
-        returnsNormally,
-      );
-    });
-
-    test('should return normally when contains with same case', () {
-      expect(
-        () => capitals.shouldContainIgnoringCase('BERLIN'),
-        returnsNormally,
-      );
-      expect(
-        () => capitals.shouldContainIgnoringCase('berlin'),
-        returnsNormally,
-      );
-    });
-
-    test('should fail when not contains', () {
-      expect(() => capitals.shouldContain('Barcelona'), failsTest);
-    });
-  });
-
-  group('should not contain ignoring case', () {
-    test('should return normally when not contains', () {
-      expect(
-        () => capitals.shouldNotContainIgnoringCase('Barcelona'),
-        returnsNormally,
-      );
-    });
-
-    test('should fail when contains', () {
-      expect(
-        () => capitals.shouldNotContainIgnoringCase('berlin'),
-        failsTest,
-      );
-    });
-  });
-
   group('should contain all', () {
     test('should return normally when contains all in order', () {
       expect(
@@ -182,6 +182,41 @@ void main() {
       );
       expect(
         () => capitals.shouldContainAll(['Berlin, Barcelona']),
+        failsTest,
+      );
+    });
+  });
+
+  group('should contain all ignoring case', () {
+    test('should return normally when contains all in order', () {
+      expect(
+        () => capitals.shouldContainAllIgnoringCase(['BERLIN']),
+        returnsNormally,
+      );
+      expect(
+        () => capitals.shouldContainAllIgnoringCase(['BERLIN', 'warsaw']),
+        returnsNormally,
+      );
+    });
+
+    test('should return normally when contains all in any order', () {
+      expect(
+        () => capitals.shouldContainAllIgnoringCase(['warsaw']),
+        returnsNormally,
+      );
+      expect(
+        () => capitals.shouldContainAllIgnoringCase(['warsaw', 'BERLIN']),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when not contain all', () {
+      expect(
+        () => capitals.shouldContainAllIgnoringCase(['Barcelona']),
+        failsTest,
+      );
+      expect(
+        () => capitals.shouldContainAllIgnoringCase(['Berlin, Barcelona']),
         failsTest,
       );
     });
@@ -236,64 +271,6 @@ void main() {
     });
   });
 
-  group('should contain none that', () {
-    test('should return normally when no elements match the predicate', () {
-      expect(
-        () => capitals.shouldContainNoneThat((c) => c.contains('ro')),
-        returnsNormally,
-      );
-    });
-
-    test('should fail when some elements matches the predicate', () {
-      expect(
-        () => capitals.shouldContainNoneThat((c) => c.startsWith('War')),
-        failsTest,
-      );
-    });
-
-    test('should fail when all elements match the predicate', () {
-      expect(
-        () => capitals.shouldContainNoneThat((c) => c.isNotEmpty),
-        failsTest,
-      );
-    });
-  });
-
-  group('should contain all ignoring case', () {
-    test('should return normally when contains all in order', () {
-      expect(
-        () => capitals.shouldContainAllIgnoringCase(['BERLIN']),
-        returnsNormally,
-      );
-      expect(
-        () => capitals.shouldContainAllIgnoringCase(['BERLIN', 'warsaw']),
-        returnsNormally,
-      );
-    });
-
-    test('should return normally when contains all in any order', () {
-      expect(
-        () => capitals.shouldContainAllIgnoringCase(['warsaw']),
-        returnsNormally,
-      );
-      expect(
-        () => capitals.shouldContainAllIgnoringCase(['warsaw', 'BERLIN']),
-        returnsNormally,
-      );
-    });
-
-    test('should fail when not contain all', () {
-      expect(
-        () => capitals.shouldContainAllIgnoringCase(['Barcelona']),
-        failsTest,
-      );
-      expect(
-        () => capitals.shouldContainAllIgnoringCase(['Berlin, Barcelona']),
-        failsTest,
-      );
-    });
-  });
-
   group('should contain all in order ignoring case', () {
     test('should return normally when contains all in order', () {
       expect(
@@ -330,6 +307,70 @@ void main() {
         () => capitals.shouldContainAllInOrderIgnoringCase(
           ['BERLIN, Barcelona'],
         ),
+        failsTest,
+      );
+    });
+  });
+
+  group('should contain all that', () {
+    test('should return normally when all elements match the predicate', () {
+      expect(
+        () => capitals.shouldContainAllThat(
+          (c) => c.startsWith(RegExp('[A-Z]')),
+        ),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when some elements matches the predicate', () {
+      expect(
+        () => capitals.shouldContainAllThat((c) => c.startsWith('War')),
+        failsTest,
+      );
+    });
+
+    test('should fail when no elements match the predicate', () {
+      expect(
+        () => capitals.shouldContainAllThat((c) => c.isEmpty),
+        failsTest,
+      );
+    });
+  });
+
+  group('should contain any that', () {
+    test('should return normally when any element match the predicate', () {
+      expect(
+        () => capitals.shouldContainAnyThat((c) => c.startsWith('B')),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when no elements match the predicate', () {
+      expect(
+        () => capitals.shouldContainAnyThat((c) => c.startsWith('X')),
+        failsTest,
+      );
+    });
+  });
+
+  group('should contain none that', () {
+    test('should return normally when no elements match the predicate', () {
+      expect(
+        () => capitals.shouldContainNoneThat((c) => c.contains('ro')),
+        returnsNormally,
+      );
+    });
+
+    test('should fail when some elements matches the predicate', () {
+      expect(
+        () => capitals.shouldContainNoneThat((c) => c.startsWith('War')),
+        failsTest,
+      );
+    });
+
+    test('should fail when all elements match the predicate', () {
+      expect(
+        () => capitals.shouldContainNoneThat((c) => c.isNotEmpty),
         failsTest,
       );
     });
