@@ -18,7 +18,8 @@ extension IterableObjectAssertions on Iterable<Object> {
     expect(
       this,
       anyElement((e) => e is E),
-      reason: 'Expected at least one element to be an instance of $E, but none were.',
+      reason:
+          'Expected at least one element to be an instance of $E, but none were.',
     );
   }
 
@@ -39,7 +40,8 @@ extension IterableAssertions<T> on Iterable<T> {
     expect(
       this,
       hasLength(expectedSize),
-      reason: 'Expected iterable to have $expectedSize elements, but found $length.',
+      reason:
+          'Expected iterable to have $expectedSize elements, but found $length.',
     );
   }
 
@@ -94,7 +96,7 @@ extension IterableAssertions<T> on Iterable<T> {
       this,
       containsAny(expected.map(equals).toList()),
       reason:
-      'Expected at least one element from $expected to be present in $this.',
+          'Expected at least one element from $expected to be present in $this.',
     );
   }
 
@@ -103,7 +105,8 @@ extension IterableAssertions<T> on Iterable<T> {
     expect(
       this,
       isNot(containsAny(expected.map(equals).toList())),
-      reason: 'Expected iterable to contain none of $expected, but some were found.',
+      reason:
+          'Expected iterable to contain none of $expected, but some were found.',
     );
   }
 
@@ -113,7 +116,8 @@ extension IterableAssertions<T> on Iterable<T> {
     expect(
       this,
       containsAll(expected),
-      reason: 'Expected iterable to contain all of $expected, but some were missing.',
+      reason:
+          'Expected iterable to contain all of $expected, but some were missing.',
     );
   }
 
@@ -124,7 +128,8 @@ extension IterableAssertions<T> on Iterable<T> {
     expect(
       this,
       containsAllInOrder(expected),
-      reason: 'Expected iterable to contain all of $expected in order, but it did not.',
+      reason:
+          'Expected iterable to contain all of $expected in order, but it did not.',
     );
   }
 
@@ -133,7 +138,8 @@ extension IterableAssertions<T> on Iterable<T> {
     expect(
       this,
       anyElement(predicate),
-      reason: 'Expected iterable to contain at least one element matching the predicate, but none did.',
+      reason:
+          'Expected iterable to contain at least one element matching the predicate, but none did.',
     );
   }
 
@@ -142,7 +148,8 @@ extension IterableAssertions<T> on Iterable<T> {
     expect(
       this,
       everyElement(predicate),
-      reason: 'Expected every element in iterable to match the predicate, but some did not.',
+      reason:
+          'Expected every element in iterable to match the predicate, but some did not.',
     );
   }
 
@@ -151,7 +158,8 @@ extension IterableAssertions<T> on Iterable<T> {
     expect(
       this,
       everyElement(isNot(predicate)),
-      reason: 'Expected no elements in iterable to match the predicate, but some did.',
+      reason:
+          'Expected no elements in iterable to match the predicate, but some did.',
     );
   }
 }
@@ -162,7 +170,8 @@ extension IterableStringAssertions on Iterable<String> {
     expect(
       this,
       containsAll([equalsIgnoringCase(expected)]),
-      reason: 'Expected iterable to contain "$expected" ignoring case, but it did not.',
+      reason:
+          'Expected iterable to contain "$expected" ignoring case, but it did not.',
     );
   }
 
@@ -171,7 +180,8 @@ extension IterableStringAssertions on Iterable<String> {
     expect(
       this,
       isNot(containsAll([equalsIgnoringCase(expected)])),
-      reason: 'Expected iterable to not contain "$expected" ignoring case, but it did.',
+      reason:
+          'Expected iterable to not contain "$expected" ignoring case, but it did.',
     );
   }
 
@@ -180,7 +190,8 @@ extension IterableStringAssertions on Iterable<String> {
     expect(
       this,
       containsAny(expected.map((e) => equalsIgnoringCase(e)).toList()),
-      reason: 'Expected iterable to contain any of $expected ignoring case, but none were found.',
+      reason:
+          'Expected iterable to contain any of $expected ignoring case, but none were found.',
     );
   }
 
@@ -189,7 +200,8 @@ extension IterableStringAssertions on Iterable<String> {
     expect(
       this,
       isNot(containsAny(expected.map((e) => equalsIgnoringCase(e)).toList())),
-      reason: 'Expected iterable to contain none of $expected ignoring case, but some were found.',
+      reason:
+          'Expected iterable to contain none of $expected ignoring case, but some were found.',
     );
   }
 
@@ -200,7 +212,8 @@ extension IterableStringAssertions on Iterable<String> {
     expect(
       this,
       containsAll(expected.map((e) => equalsIgnoringCase(e))),
-      reason: 'Expected iterable to contain all of $expected ignoring case, but some were missing.',
+      reason:
+          'Expected iterable to contain all of $expected ignoring case, but some were missing.',
     );
   }
 
@@ -211,7 +224,8 @@ extension IterableStringAssertions on Iterable<String> {
     expect(
       this,
       containsAllInOrder(expected.map((e) => equalsIgnoringCase(e))),
-      reason: 'Expected iterable to contain all of $expected in order ignoring case, but it did not.',
+      reason:
+          'Expected iterable to contain all of $expected in order ignoring case, but it did not.',
     );
   }
 }
