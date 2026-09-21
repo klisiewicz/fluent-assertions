@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0
+
+* Dart 3 migration and SDK constraint update (`>=3.0.0 <4.0.0`).
+* Added fluent assertion chaining.
+* Added soft assertions (`assertSoftly`).
+* Added assertions for:
+  * Maps
+  * Exceptions and asynchronous results
+  * DateTimes and Durations
+  * Deep structural equivalency
+  * Numeric ranges and approximations
+  * String length, numeric checks, and multi-string matching
+  * Iterable sorting, counts, and predicates
+
 ## 0.5.1
 
 * Downgraded test package to 1.25.7.

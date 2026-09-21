@@ -730,4 +730,38 @@ void main() {
       });
     });
   });
+
+  group('NaN and shouldNotBeNear', () {
+    test('NaN is near NaN', () {
+      expect(() => double.nan.shouldBeNear(double.nan), returnsNormally);
+      expect(() => double.nan.shouldNotBeNear(double.nan), failsTest);
+    });
+
+    test('number is not near NaN', () {
+      expect(() => 5.shouldNotBeNear(double.nan), returnsNormally);
+      expect(() => double.nan.shouldNotBeNear(5), returnsNormally);
+      expect(() => 5.shouldBeNear(double.nan), failsTest);
+      expect(() => double.nan.shouldBeNear(5), failsTest);
+    });
+
+    test('shouldNotBeNear for normal numbers', () {
+      expect(() => 10.shouldNotBeNear(20, delta: 2), returnsNormally);
+      expect(() => 10.shouldNotBeNear(11, delta: 2), failsTest);
+    });
+  });
+
+  group('numerical chaining', () {
+    test('chains multiple numerical assertions fluently', () {
+      expect(
+        () => 42
+            .shouldBePositive()
+            .shouldBeGreaterThan(10)
+            .shouldBeLessThan(50)
+            .shouldBeInRange(lowerBound: 40, upperBound: 45)
+            .shouldNotBeInRange(lowerBound: 45, upperBound: 50)
+            .shouldNotBeZero(),
+        returnsNormally,
+      );
+    });
+  });
 }
