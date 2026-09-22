@@ -1,67 +1,144 @@
+import 'package:fluent_assertions/src/internal/check_expect.dart';
 import 'package:test/test.dart';
 
-extension NumericalAssertions on num {
+/// Extension methods for numerical assertions on [num], [int], and [double].
+extension NumericalAssertions<T extends num> on T {
   /// Asserts that the value is greater or equal to [expected].
-  void shouldBeGreaterOrEqualTo(num expected) =>
-      expect(this, greaterThanOrEqualTo(expected));
+  T shouldBeGreaterOrEqualTo(num expected) {
+    checkExpect(this, greaterThanOrEqualTo(expected));
+    return this;
+  }
 
   /// Asserts that the value is not greater or equal to [expected].
-  void shouldNotBeGreaterOrEqualTo(num expected) => shouldBeLessThan(expected);
+  T shouldNotBeGreaterOrEqualTo(num expected) {
+    shouldBeLessThan(expected);
+    return this;
+  }
 
   /// Asserts that the value is greater than [expected].
-  void shouldBeGreaterThan(num expected) => expect(this, greaterThan(expected));
+  T shouldBeGreaterThan(num expected) {
+    checkExpect(this, greaterThan(expected));
+    return this;
+  }
 
   /// Asserts that the value is not greater than [expected].
-  void shouldNotBeGreaterThan(num expected) => shouldBeLessOrEqualTo(expected);
+  T shouldNotBeGreaterThan(num expected) {
+    shouldBeLessOrEqualTo(expected);
+    return this;
+  }
 
   /// Asserts that the value is less or equal to [expected].
-  void shouldBeLessOrEqualTo(num expected) =>
-      expect(this, lessThanOrEqualTo(expected));
+  T shouldBeLessOrEqualTo(num expected) {
+    checkExpect(this, lessThanOrEqualTo(expected));
+    return this;
+  }
 
   /// Asserts that the value is not less or equal to [expected].
-  void shouldNotBeLessOrEqualTo(num expected) => shouldBeGreaterThan(expected);
+  T shouldNotBeLessOrEqualTo(num expected) {
+    shouldBeGreaterThan(expected);
+    return this;
+  }
 
   /// Asserts that the value is less than [expected].
-  void shouldBeLessThan(num expected) => expect(this, lessThan(expected));
+  T shouldBeLessThan(num expected) {
+    checkExpect(this, lessThan(expected));
+    return this;
+  }
 
   /// Asserts that the value is not less than [expected].
-  void shouldNotBeLessThan(num expected) => shouldBeGreaterOrEqualTo(expected);
+  T shouldNotBeLessThan(num expected) {
+    shouldBeGreaterOrEqualTo(expected);
+    return this;
+  }
 
   /// Asserts that the value is greater than zero.
-  void shouldBePositive() => expect(this, isPositive);
+  T shouldBePositive() {
+    checkExpect(this, isPositive);
+    return this;
+  }
 
-  /// Asserts that the value is less or equal zero.
-  void shouldNotBePositive() => expect(this, isNonPositive);
+  /// Asserts that the value is less or equal to zero.
+  T shouldNotBePositive() {
+    checkExpect(this, isNonPositive);
+    return this;
+  }
 
   /// Asserts that the value is less than zero.
-  void shouldBeNegative() => expect(this, isNegative);
+  T shouldBeNegative() {
+    checkExpect(this, isNegative);
+    return this;
+  }
 
-  /// Asserts that the value is greater or equal zero.
-  void shouldNotBeNegative() => expect(this, isNonNegative);
+  /// Asserts that the value is greater or equal to zero.
+  T shouldNotBeNegative() {
+    checkExpect(this, isNonNegative);
+    return this;
+  }
 
   /// Asserts that the value is zero.
-  void shouldBeZero() => expect(this, isZero);
+  T shouldBeZero() {
+    checkExpect(this, isZero);
+    return this;
+  }
 
   /// Asserts that the value is not zero.
-  void shouldNotBeZero() => expect(this, isNonZero);
+  T shouldNotBeZero() {
+    checkExpect(this, isNonZero);
+    return this;
+  }
 
-  /// Asserts that the value is within [delta] of some [expected] value.
-  void shouldBeNear(num expected, {num delta = 0}) =>
-      expect(this, closeTo(expected, delta));
+  /// Asserts that the value is within [delta] of [expected].
+  ///
+  /// Conforming with Kluent parity, [double.nan] is considered near itself.
+  T shouldBeNear(num expected, {num delta = 0}) {
+    if (this.isNaN && expected.isNaN) {
+      return this;
+    }
+    if (this.isNaN || expected.isNaN) {
+      checkExpect(
+        false,
+        isTrue,
+        reason: 'Expected $this to be near $expected +/- $delta.',
+      );
+      return this;
+    }
+    checkExpect(this, closeTo(expected, delta));
+    return this;
+  }
+
+  /// Asserts that the value is not within [delta] of [expected].
+  T shouldNotBeNear(num expected, {num delta = 0}) {
+    if (this.isNaN && expected.isNaN) {
+      checkExpect(
+        false,
+        isTrue,
+        reason: 'Expected NaN not to be near NaN +/- $delta.',
+      );
+      return this;
+    }
+    if (this.isNaN || expected.isNaN) {
+      return this;
+    }
+    checkExpect(this, isNot(closeTo(expected, delta)));
+    return this;
+  }
 
   /// Asserts that the value is greater than or equal to [lowerBound]
   /// and less than or equal to [upperBound].
-  void shouldBeInRange({
+  T shouldBeInRange({
     num lowerBound = double.negativeInfinity,
     num upperBound = double.infinity,
-  }) =>
-      expect(this, inInclusiveRange(lowerBound, upperBound));
+  }) {
+    checkExpect(this, inInclusiveRange(lowerBound, upperBound));
+    return this;
+  }
 
-  /// Asserts that the value is greater than [upperBound] or
-  /// less than [lowerBound].
-  void shouldNotBeInRange({
+  /// Asserts that the value is outside the range [[lowerBound], [upperBound]].
+  T shouldNotBeInRange({
     num lowerBound = double.negativeInfinity,
     num upperBound = double.infinity,
-  }) =>
-      expect(this, isNot(inInclusiveRange(lowerBound, upperBound)));
+  }) {
+    checkExpect(this, isNot(inInclusiveRange(lowerBound, upperBound)));
+    return this;
+  }
 }

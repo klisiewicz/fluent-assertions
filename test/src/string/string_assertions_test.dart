@@ -499,4 +499,63 @@ void main() {
       expect(() => 'name'.shouldNotBeNullOrBlank(), returnsNormally);
     });
   });
+
+  group('shouldHaveLength', () {
+    test('passes when length matches', () {
+      expect(() => 'hello'.shouldHaveLength(5), returnsNormally);
+      expect(() => ''.shouldHaveLength(0), returnsNormally);
+    });
+
+    test('fails when length differs', () {
+      expect(() => 'hello'.shouldHaveLength(3), failsTest);
+    });
+  });
+
+  group('numeric', () {
+    test('shouldBeNumeric passes for numbers', () {
+      expect(() => '123'.shouldBeNumeric(), returnsNormally);
+      expect(() => '-45.67'.shouldBeNumeric(), returnsNormally);
+    });
+
+    test('shouldBeNumeric fails for non-numbers', () {
+      expect(() => 'abc'.shouldBeNumeric(), failsTest);
+      expect(() => '12a'.shouldBeNumeric(), failsTest);
+    });
+
+    test('shouldNotBeNumeric passes for non-numbers', () {
+      expect(() => 'abc'.shouldNotBeNumeric(), returnsNormally);
+    });
+
+    test('shouldNotBeNumeric fails for numbers', () {
+      expect(() => '123'.shouldNotBeNumeric(), failsTest);
+    });
+  });
+
+  group('shouldNotContainAll', () {
+    test('passes when some items missing', () {
+      expect(() => 'hello'.shouldNotContainAll(['h', 'z']), returnsNormally);
+      expect(() => 'hello'.shouldNotContainAllIgnoringCase(['H', 'Z']),
+          returnsNormally);
+    });
+
+    test('fails when all items present', () {
+      expect(() => 'hello'.shouldNotContainAll(['h', 'e']), failsTest);
+      expect(
+          () => 'hello'.shouldNotContainAllIgnoringCase(['H', 'E']), failsTest);
+    });
+  });
+
+  group('string chaining', () {
+    test('chains multiple string assertions fluently', () {
+      expect(
+        () => 'Flutter'
+            .shouldNotBeEmpty()
+            .shouldStartWith('Flu')
+            .shouldEndWith('ter')
+            .shouldContain('utt')
+            .shouldHaveLength(7),
+        returnsNormally,
+      );
+    });
+  });
 }
